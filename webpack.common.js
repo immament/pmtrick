@@ -1,5 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -59,4 +60,15 @@ module.exports = {
             '@src': path.resolve(__dirname, 'src/'),
         },
     },
+    plugins: [
+        new CopyPlugin({
+            patterns: [
+                {
+                    from: 'node_modules/webextension-polyfill/dist/browser-polyfill.min.js',
+                    to: 'browser-polyfill.js',
+                    toType: 'file',
+                },
+            ],
+        }),
+    ],
 };

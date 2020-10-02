@@ -1,6 +1,5 @@
 import log from 'loglevel';
 import { injectable } from 'tsyringe';
-import { browser } from 'webextension-polyfill-ts';
 
 export enum SkillsTableOptionsKeys {
     currentSeasonLeagueMatches = 'currentSeasonLeagueMatches',

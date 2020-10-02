@@ -1,5 +1,4 @@
 import log from 'loglevel';
-import { browser } from 'webextension-polyfill-ts';
 
 export class BaseRepository<T> {
     constructor(protected _moduleName: string) {}

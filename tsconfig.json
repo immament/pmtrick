@@ -5,7 +5,7 @@
             "@src/*": ["src/*"]
         },
         "target": "es5",
-        "module": "commonjs",
+        "module": "esnext",
         "moduleResolution": "node",
         "rootDir": "./src",
         "outDir": "dist/js",
@@ -16,6 +16,7 @@
         "lib": ["es2015", "dom"],
         "experimentalDecorators": true,
         "allowSyntheticDefaultImports": true,
-        "emitDecoratorMetadata": true
+        "emitDecoratorMetadata": true,
+        "typeRoots": ["node_modules/@types", "node_modules/webextension-polyfill-ts/lib"]
     }
 }
