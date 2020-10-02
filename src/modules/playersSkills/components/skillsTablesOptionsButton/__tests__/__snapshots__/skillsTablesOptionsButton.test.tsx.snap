@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SkillsTableOptionsButton component renders 1`] = `
+<button
+  className="btn btn-default btn-success btn-xs"
+  onClick={[Function]}
+>
+  Options
+</button>
+`;

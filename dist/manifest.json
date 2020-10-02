@@ -1,0 +1,24 @@
+{
+    "manifest_version": 2,
+    "name": "PmTrick",
+    "description": "Planetarium manager extension",
+    "version": "0.0.1",
+    "browser_action": {
+        "default_icon": "icon-16.png"
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://www.pmanager.org/*"],
+            "js": ["js/contentscript.js"],
+            "run_at": "document_end"
+        }
+    ],
+    "icons": {
+        "16": "icon-16.png",
+        "48": "icon-48.png",
+        "128": "icon-128.png"
+    },
+    "permissions": ["tabs", "activeTab", "management", "notifications", "storage", "https://*.pmanager.org/"],
+    "content_security_policy": "connect-src ws://localhost:8097; object-src 'self'; script-src 'self'",
+    "web_accessible_resources": ["js/tacticEditor.js"]
+}

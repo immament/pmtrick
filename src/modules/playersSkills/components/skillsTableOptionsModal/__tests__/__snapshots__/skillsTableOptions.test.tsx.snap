@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SkillsTableOptions component renders 1`] = `
+<div
+  className="pmt-modal modal"
+  id="modal"
+>
+  <div
+    className="modal-dialog "
+    role="document"
+  >
+    <div
+      className="modal-content"
+    >
+      <div
+        className="modal-header"
+      >
+        <button
+          aria-label="Close"
+          className="close"
+          data-dismiss="modal"
+          onClick={[Function]}
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+          >
+            ×
+          </span>
+        </button>
+        <h4
+          className="modal-title"
+        >
+          Options
+        </h4>
+      </div>
+      <div
+        className="modal-body"
+      />
+      <div
+        className="modal-footer"
+      >
+        <button
+          className="btn btn-default"
+          data-dismiss="modal"
+          onClick={[Function]}
+          type="button"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

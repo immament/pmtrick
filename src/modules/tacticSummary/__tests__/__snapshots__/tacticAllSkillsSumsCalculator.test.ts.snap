@@ -1,0 +1,281 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TacticAllSkillsSumCalculator should calculate sum for one stat for all positions 1`] = `
+Object {
+  "a": Object {
+    "agility": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "count": 1,
+    "finishing": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "gs": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "handling": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "heading": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "outOfArea": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "passing": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "positioning": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "reflexes": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "speed": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "strength": Object {
+      "avg": 2,
+      "sum": 2,
+    },
+    "tackling": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "technique": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+  },
+  "all": Object {
+    "agility": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "count": 6,
+    "finishing": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "gs": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "handling": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "heading": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "outOfArea": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "passing": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "positioning": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "reflexes": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "speed": Object {
+      "avg": 9.83,
+      "sum": 59,
+    },
+    "strength": Object {
+      "avg": 6.33,
+      "sum": 38,
+    },
+    "tackling": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "technique": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+  },
+  "d": Object {
+    "agility": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "count": 1,
+    "finishing": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "gs": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "handling": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "heading": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "outOfArea": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "passing": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "positioning": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "reflexes": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "speed": Object {
+      "avg": 5,
+      "sum": 5,
+    },
+    "strength": Object {
+      "avg": 20,
+      "sum": 20,
+    },
+    "tackling": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "technique": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+  },
+  "g": Object {
+    "agility": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "count": 1,
+    "finishing": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "gs": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "handling": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "heading": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "outOfArea": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "passing": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "positioning": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "reflexes": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "speed": Object {
+      "avg": 11,
+      "sum": 11,
+    },
+    "strength": Object {
+      "avg": 6,
+      "sum": 6,
+    },
+    "tackling": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "technique": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+  },
+  "m": Object {
+    "agility": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "count": 3,
+    "finishing": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "gs": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "handling": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "heading": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "outOfArea": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "passing": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "positioning": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "reflexes": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "speed": Object {
+      "avg": 14.33,
+      "sum": 43,
+    },
+    "strength": Object {
+      "avg": 3.33,
+      "sum": 10,
+    },
+    "tackling": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+    "technique": Object {
+      "avg": 0,
+      "sum": 0,
+    },
+  },
+}
+`;

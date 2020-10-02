@@ -1,0 +1,58 @@
+// Change woff2 to woff. woff2 not avaiable on pmanager,org
+@font-face {
+    font-family: 'Glyphicons Custom';
+    src: url('~bootstrap/fonts/glyphicons-halflings-regular.woff') format('woff');
+    font-weight: normal;
+}
+
+.glyphicon {
+    font-family: 'Glyphicons Custom';
+}
+
+// LAYAOUT
+.pmt-font-weight-bold {
+    font-weight: bold;
+}
+
+.pmt-flex {
+    display: flex;
+}
+
+.pmt-justify-content-between {
+    justify-content: space-between;
+}
+
+.pmt-justify-content-end {
+    justify-content: flex-end;
+}
+
+.pmt-nopadding {
+    padding: 0px;
+}
+
+// MODAL
+.pmt-modal {
+    .modal-body {
+        overflow-x: auto;
+        overflow-y: auto;
+        max-height: calc(100vh - 100px);
+    }
+}
+
+/* POSITION COLORS */
+
+.position-G {
+    color: #5a3dfa;
+}
+
+.position-D {
+    color: green;
+}
+
+.position-M {
+    color: #fcc100;
+}
+
+.position-F {
+    color: #f800ae;
+}

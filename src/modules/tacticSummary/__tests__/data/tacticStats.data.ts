@@ -1,0 +1,63 @@
+import { TacticStats } from '../../model/tacticStats.model';
+
+export const tacticStatsData: TacticStats = {
+    ats: {
+        offside: [15, 10],
+        pressingLow: [6.82, 12.55],
+        pressingHigh: [10.64, 12.55],
+        counterAttack: [10.64, 12.55],
+        highBalls: [7.45, 8.91],
+        markingZonal: [8.666666666666666, 14.166666666666666, 11.416666666666666],
+        markingMan: [8.666666666666666, 7.666666666666667, 8.166666666666666],
+        oneOnOnes: [10, 8.714285714285714, 9.357142857142858],
+        gkStand: [9, 16, 12.5],
+        gkRush: [13, 20, 16.5],
+        longShots: [10.857142857142858, 10, 10.428571428571429],
+        firstTimeShots: [17.75, 9.5, 13.625],
+    },
+    vsAts: {
+        offside: [8.5, 9.75],
+        pressingLow: [6.82, 12.55],
+        pressingHigh: [10.64, 12.55],
+        counterAttack: [10.64, 12.55],
+        highBalls: [7.45, 8.91],
+        markingZonal: [9.714285714285714, 13.428571428571429, 11.571428571428571],
+        markingMan: [9.714285714285714, 8.714285714285714, 9.214285714285714],
+        oneOnOnes: [8.666666666666666, 7.666666666666667, 8.166666666666666],
+        gkStand: [17.75, 9.5, 13.625],
+        gkRush: [12.25, 9.5, 10.875],
+        longShots: [13, 15, 14],
+        firstTimeShots: [9, 9.5, 9.25],
+    },
+} as TacticStats;
+
+export const tacticStats2Data = {
+    ats: {
+        offside: [15, 10],
+        pressingLow: [6.36, 12.73],
+        pressingHigh: [10.64, 12.73],
+        counterAttack: [10.64, 12.73],
+        highBalls: [6.36, 8.64],
+        markingZonal: [8.666666666666666, 14.166666666666666, 11.416666666666666],
+        markingMan: [8.666666666666666, 7.666666666666667, 8.166666666666666],
+        oneOnOnes: [9.857142857142858, 8.285714285714286, 9.071428571428573],
+        gkStand: [9, 16, 12.5],
+        gkRush: [13, 20, 16.5],
+        longShots: [11.571428571428571, 9.857142857142858, 10.714285714285715],
+        firstTimeShots: [19, 6.5, 12.75],
+    },
+    vsAts: {
+        offside: [11.25, 10.25],
+        pressingLow: [6.36, 12.73],
+        pressingHigh: [10.64, 12.73],
+        counterAttack: [10.64, 12.73],
+        highBalls: [6.36, 8.64],
+        markingZonal: [11.285714285714286, 13.714285714285714, 12.5],
+        markingMan: [11.285714285714286, 8.285714285714286, 9.785714285714286],
+        oneOnOnes: [8.666666666666666, 7.666666666666667, 8.166666666666666],
+        gkStand: [19, 6.5, 12.75],
+        gkRush: [12, 6.5, 9.25],
+        longShots: [13, 15, 14],
+        firstTimeShots: [9, 6.5, 7.75],
+    },
+} as TacticStats;

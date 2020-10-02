@@ -1,0 +1,110 @@
+.pmt-tactic-summary {
+    .nav a {
+        font-size: 12px;
+    }
+    table.pmt-sums {
+        font-size: 12px;
+
+        th:nth-child(n + 2),
+        td:nth-child(n + 2) {
+            text-align: center;
+        }
+
+        .col-xs-6 {
+            padding-right: 2px;
+            padding-left: 2px;
+        }
+    }
+
+    .pmt-positive-delta,
+    .pmt-negative-delta {
+        font-size: xx-small;
+    }
+    .pmt-positive-delta {
+        color: green;
+    }
+    .pmt-negative-delta {
+        color: orange;
+    }
+
+    .pmt-ats {
+        font-size: 12px;
+
+        .pmt-ats-options {
+            .panel-body {
+                display: flex;
+
+                .pmt-ats-option,
+                .pmt-ats-row-view-option {
+                    padding: 0 8px 0 8px;
+                }
+            }
+        }
+
+        .pmt-ats-row {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+
+            .pmt-at-details {
+                padding: 0;
+                border-right: 1px solid #eee;
+            }
+        }
+
+        .pmt-ats-row.opponent {
+            background-color: #def47a;
+        }
+
+        .pmt-ats-row.in-two-rows {
+            .pmt-at-name {
+                display: flex;
+                align-items: center;
+                border-right: 1px solid #eee;
+                justify-content: space-between;
+                .glyphicon {
+                    color: #1f532f;
+                }
+            }
+            .pmt-at-details {
+                .pmt-at-condition {
+                    border-bottom: 1px solid #eee;
+                }
+                .pmt-at-value {
+                    background-color: #f9f9f9;
+                }
+                .pmt-short-div {
+                    padding: 4px 0 4px 0;
+                }
+            }
+        }
+
+        .pmt-ats-row.in-one-row {
+            div {
+                display: flex;
+                align-items: center;
+                min-height: 32px;
+                border-right: 1px solid #eee;
+            }
+            .pmt-at-name {
+                display: flex;
+                align-items: center;
+                border-right: 1px solid #eee;
+                justify-content: space-between;
+            }
+            .pmt-at-condition {
+                padding: 4px 0 4px 0;
+                justify-content: center;
+            }
+            .pmt-at-value {
+                padding: 4px 0 4px 0;
+                justify-content: center;
+                background-color: #f9f9f9;
+            }
+        }
+        .pmt-ats-row:hover {
+            div {
+                background-color: #d6ec7a !important;
+            }
+        }
+    }
+}
