@@ -25,10 +25,12 @@ const Template: Story<AdvanceTacticsProps> = (args) => (
 export const WithoutPreviousData = Template.bind({});
 WithoutPreviousData.args = {
     stats: tacticStatsData,
+    activeAts: ['counterAttack', 'highBalls', 'oneOnOnes'],
 };
 
 export const WithPreviousData = Template.bind({});
 WithPreviousData.args = {
     stats: tacticStats2Data,
     statsOld: tacticStatsData,
+    activeAts: ['markingMan', 'longShots'],
 };

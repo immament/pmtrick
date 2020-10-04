@@ -4,10 +4,6 @@ import { injectable } from 'tsyringe';
 
 import { ContentScriptService } from '@src/contentScript/contentServices/contentScript.service';
 import { SkillsTablesOptionsButton } from '@src/modules/playersSkills/components/skillsTablesOptionsButton/skillsTablesOptionsButton.component';
-import {
-    getPlayersSkillsPageType,
-    PlayersSkillsPages,
-} from '@src/modules/playersSkills/services/playersSkillsTable.factory';
 import { PlayersSkillsViewService } from '@src/modules/playersSkills/services/playersSkillsView.service';
 
 @injectable()
@@ -23,14 +19,11 @@ export default class PlayersSkillsContentService implements ContentScriptService
     }
 
     apply(): void {
-        const pageType = getPlayersSkillsPageType();
-        if (pageType) {
-            this.appendSkillsTableOptions(pageType);
-            this.playersSkillsService.run();
-        }
+        this.appendSkillsTableOptions();
+        this.playersSkillsService.run();
     }
 
-    private appendSkillsTableOptions(pageType: PlayersSkillsPages): void {
+    private appendSkillsTableOptions(): void {
         const titleBar = document.querySelector('div.panel-primary3 div.panel-heading');
 
         if (titleBar) {
@@ -38,7 +31,7 @@ export default class PlayersSkillsContentService implements ContentScriptService
             const optionsBar = document.createElement('div');
             optionsBar.id = 'pmt-options-root';
             titleBar.appendChild(optionsBar);
-            ReactDOM.render(<SkillsTablesOptionsButton pageType={pageType} />, optionsBar);
+            ReactDOM.render(<SkillsTablesOptionsButton />, optionsBar);
         }
     }
 }

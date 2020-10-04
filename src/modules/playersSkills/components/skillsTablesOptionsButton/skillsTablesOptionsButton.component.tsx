@@ -3,14 +3,9 @@ import { container } from 'tsyringe';
 
 import { PlayersSkillsViewService } from '@src/modules/playersSkills/services/playersSkillsView.service';
 
-import { PlayersSkillsPages } from '../../services/playersSkillsTable.factory';
 import SkillsTableOptions from '../skillsTableOptionsModal/skillsTableOptions.component';
 
-type SkillsTablesOptionsButtonProps = {
-    pageType: PlayersSkillsPages;
-};
-
-export class SkillsTablesOptionsButton extends React.Component<SkillsTablesOptionsButtonProps, { show: boolean }> {
+export class SkillsTablesOptionsButton extends React.Component<unknown, { show: boolean }> {
     state = {
         show: false,
     };
