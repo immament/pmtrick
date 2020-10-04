@@ -53,7 +53,7 @@ function prepare() {
         setTimeout(prepare, 1000);
         return;
     }
-    var style = window.getComputedStyle(manager);
+    const style = window.getComputedStyle(manager);
     if (style.display === 'none') {
         console.log('prepare....... managerTabs no visible yet ... ');
         setTimeout(prepare, 1000);

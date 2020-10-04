@@ -7,8 +7,12 @@ import { TacticEditorData } from '@src/modules/tacticSummary/model/tacticEditorP
 import { AdvanceTacticTypes } from '@src/modules/tacticSummary/model/tacticStats.model';
 
 function logConfig(): void {
-    log.setLevel('DEBUG');
-    log.info('bootstrap - log level:', log.getLevel());
+    if (process.env.NODE_ENV !== 'production') {
+        log.setLevel('DEBUG');
+        log.info('bootstrap - DEV MODE - log level', log.getLevel());
+    } else {
+        log.setLevel('INFO');
+    }
 }
 
 logConfig();

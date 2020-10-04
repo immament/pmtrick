@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import log from 'loglevel';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -51,7 +50,7 @@ export class TacticEditorService {
         const positions = this.tacticEditorExtractor.extractPositions();
         this.tacticDataService.positions.newData({ positions });
 
-        console.log('reloadData result', positions);
+        log.debug('reloadData result', positions);
     }
 
     private reloadAtOptions() {

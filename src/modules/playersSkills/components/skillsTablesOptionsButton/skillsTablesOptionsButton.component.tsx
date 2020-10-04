@@ -26,6 +26,7 @@ export class SkillsTablesOptionsButton extends React.Component<SkillsTablesOptio
             show: false,
         });
     };
+
     private handleSave = (): void => {
         const playersSkillsViewService = container.resolve(PlayersSkillsViewService);
         playersSkillsViewService.run();

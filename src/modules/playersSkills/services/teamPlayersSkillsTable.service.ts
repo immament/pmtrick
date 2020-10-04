@@ -5,7 +5,7 @@ import { PlayersSkillsTableService } from '@src/modules/playersSkills/services/p
 
 @singleton()
 export class TeamPlayersSkillsTableService extends PlayersSkillsTableService {
-    prepareTable(playersTable: HTMLTableElement) {
+    prepareTable(playersTable: HTMLTableElement): void {
         playersTable.classList.add('pmt-tpl-skills');
     }
 

@@ -7,7 +7,7 @@ export function injectFileScript(file: string, node?: Element): void {
     };
 }
 
-export function injectScript(scriptContent: string) {
+export function injectScript(scriptContent: string): void {
     const script = document.createElement('script');
     const inlineScript = document.createTextNode(scriptContent);
     script.appendChild(inlineScript);

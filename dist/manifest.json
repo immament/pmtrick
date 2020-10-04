@@ -8,7 +8,7 @@
     },
     "content_scripts": [
         {
-            "matches": ["https://www.pmanager.org/*"],
+            "matches": ["https://www.pmanager.org/titulares_v3.asp*"],
             "js": ["js/browser-polyfill.js", "js/contentscript.js"],
             "run_at": "document_end"
         }
