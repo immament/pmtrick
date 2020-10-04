@@ -1,12 +1,12 @@
 import log from 'loglevel';
-import { container, injectable } from 'tsyringe';
+import { container, singleton } from 'tsyringe';
 
 import PlayersSkillsContentService from '@src/contentScript/contentServices/playersSkillsContent.service';
 
 import { ContentScriptService } from '../contentServices/contentScript.service';
 import TacticEditorContentService from '../contentServices/tacticEditorContent.service';
 
-@injectable()
+@singleton()
 export class ContentScriptRegistry {
     constructor() {
         this.registryContent();
@@ -27,7 +27,7 @@ export class ContentScriptRegistry {
 
     registryContent(): void {
         log.info('ContentScriptRegistry.registryContent+');
-        container.register('ContentScriptService', PlayersSkillsContentService);
+        // container.register('ContentScriptService', PlayersSkillsContentService);
         container.register('ContentScriptService', TacticEditorContentService);
     }
 }
