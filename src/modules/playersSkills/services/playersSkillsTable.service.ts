@@ -47,7 +47,7 @@ export abstract class PlayersSkillsTableService {
     protected createHeaderCell(content: string): HTMLTableCellElement {
         const cell = document.createElement('td');
         cell.classList.add('cabecalhos');
-        cell.innerHTML = content;
+        cell.innerText = content;
 
         return cell;
     }
@@ -58,7 +58,7 @@ export abstract class PlayersSkillsTableService {
         if (classStyles) {
             cell.classList.add(...classStyles);
         }
-        cell.innerHTML = content;
+        cell.innerText = content;
         if (tooltip) {
             cell.title = tooltip;
         }

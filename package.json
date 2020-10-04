@@ -12,7 +12,8 @@
         "prettify": "prettier --write \"src/**/*.ts*\"",
         "storybook": "start-storybook -p 6006",
         "build-storybook": "build-storybook",
-        "webpack-bundle-analyzer": "webpack-bundle-analyzer"
+        "webpack-bundle-analyzer": "webpack-bundle-analyzer",
+        "create-ext": "cd dist && zip -r -FS ../output/pmtrick.zip * --exclude '*.git*'"
     },
     "repository": {
         "type": "git",

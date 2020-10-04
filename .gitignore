@@ -1,4 +1,5 @@
 dist/js/*
+
 .vscode
 storybook-static/*
 
@@ -7,3 +8,5 @@ npm-debug.log
 yarn-error.log
 
 .DS_Store
+
+output/*
