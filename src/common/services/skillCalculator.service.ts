@@ -19,7 +19,7 @@ import type { GsFormula } from '@src/common/model/gsFormula.model';
 export class SkillCalculatorService {
     constructor(
         @inject('GsFormula') private readonly _gsFormula: GsFormula,
-        private playersRankService: CurrentPlayersRankService,
+        private playersRankService?: CurrentPlayersRankService,
     ) {}
 
     private _skillsPartitions = getSkillsPartitions();
@@ -57,7 +57,7 @@ export class SkillCalculatorService {
         } as SkillsSummary;
 
         summary.gs = this.gs(summary, this._gsFormula);
-        summary.rank = this.playersRankService.getRank(summary.gs);
+        summary.rank = this.playersRankService?.getRank(summary.gs);
         return summary;
     }
 
@@ -79,7 +79,7 @@ export class SkillCalculatorService {
             (skillsSummary.main * gsFormula.main +
                 skillsSummary.secondary * gsFormula.secondary +
                 skillsSummary.physical * gsFormula.physical +
-                skillsSummary.tertiary * gsFormula.tertiary) /
+                (skillsSummary.tertiary * gsFormula.tertiary) / 3) /
             40
         );
     }

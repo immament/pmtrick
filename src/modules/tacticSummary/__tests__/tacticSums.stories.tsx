@@ -20,4 +20,4 @@ const Template: Story<TacticSumsProps> = (args) => (
 );
 
 export const First = Template.bind({});
-First.args = { sums: tacticSumsPropsMock.sums };
+First.args = { sums: tacticSumsPropsMock.getSums() };

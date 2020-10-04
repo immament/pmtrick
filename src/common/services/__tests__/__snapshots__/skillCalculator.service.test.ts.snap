@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SkillCalculatorService Calculate skills summaries for all positions 1`] = `
+Object {
+  "D": Object {
+    "gs": 33.407583333333335,
+    "main": 12,
+    "physical": 22,
+    "position": "D",
+    "rank": undefined,
+    "secondary": 12,
+    "tertiary": 65,
+  },
+  "F": Object {
+    "gs": 24.829,
+    "main": 7,
+    "physical": 22,
+    "position": "F",
+    "rank": undefined,
+    "secondary": 10,
+    "tertiary": 72,
+  },
+  "G": Object {
+    "gs": 74.78441666666667,
+    "main": 36,
+    "physical": 22,
+    "position": "G",
+    "rank": undefined,
+    "secondary": 22,
+    "tertiary": 31,
+  },
+  "M": Object {
+    "gs": 33.407583333333335,
+    "main": 12,
+    "physical": 22,
+    "position": "M",
+    "rank": undefined,
+    "secondary": 12,
+    "tertiary": 65,
+  },
+  "best": Object {
+    "gs": 74.78441666666667,
+    "main": 36,
+    "physical": 22,
+    "position": "G",
+    "rank": undefined,
+    "secondary": 22,
+    "tertiary": 31,
+  },
+}
+`;

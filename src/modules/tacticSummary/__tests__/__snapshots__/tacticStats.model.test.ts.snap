@@ -1,0 +1,120 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tactic Stats should calculate stats... 1`] = `
+TacticStats {
+  "ats": Object {
+    "counterAttack": Array [
+      10.55,
+      12.36,
+    ],
+    "firstTimeShots": Array [
+      17.75,
+      9.5,
+      13.625,
+    ],
+    "gkRush": Array [
+      13,
+      20,
+      16.5,
+    ],
+    "gkStand": Array [
+      9,
+      16,
+      12.5,
+    ],
+    "highBalls": Array [
+      7.45,
+      8.91,
+    ],
+    "longShots": Array [
+      10.857142857142858,
+      9.857142857142858,
+      10.357142857142858,
+    ],
+    "markingMan": Array [
+      8.666666666666666,
+      7.666666666666667,
+      8.166666666666666,
+    ],
+    "markingZonal": Array [
+      8.666666666666666,
+      13.833333333333334,
+      11.25,
+    ],
+    "offside": Array [
+      14.67,
+      9.67,
+    ],
+    "oneOnOnes": Array [
+      9.857142857142858,
+      8.714285714285714,
+      9.285714285714285,
+    ],
+    "pressingHigh": Array [
+      10.55,
+      12.36,
+    ],
+    "pressingLow": Array [
+      6.82,
+      12.36,
+    ],
+  },
+  "vsAts": Object {
+    "counterAttack": Array [
+      10.55,
+      12.36,
+    ],
+    "firstTimeShots": Array [
+      9,
+      9.67,
+      9.335,
+    ],
+    "gkRush": Array [
+      12,
+      9.5,
+      10.75,
+    ],
+    "gkStand": Array [
+      17.75,
+      9.5,
+      13.625,
+    ],
+    "highBalls": Array [
+      7.45,
+      8.91,
+    ],
+    "longShots": Array [
+      13,
+      14.67,
+      13.835,
+    ],
+    "markingMan": Array [
+      9.428571428571429,
+      8.714285714285714,
+      9.071428571428571,
+    ],
+    "markingZonal": Array [
+      9.428571428571429,
+      13.285714285714286,
+      11.357142857142858,
+    ],
+    "offside": Array [
+      8.5,
+      9.75,
+    ],
+    "oneOnOnes": Array [
+      8.666666666666666,
+      7.666666666666667,
+      8.166666666666666,
+    ],
+    "pressingHigh": Array [
+      10.55,
+      12.36,
+    ],
+    "pressingLow": Array [
+      6.82,
+      12.36,
+    ],
+  },
+}
+`;

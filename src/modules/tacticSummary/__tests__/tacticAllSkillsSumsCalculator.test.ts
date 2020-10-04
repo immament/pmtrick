@@ -66,4 +66,4 @@ const mockData: TacticEditorData = {
             player: { skills: { speed: 0, strength: 2 } } as TacticEditorPlayer,
         },
     ],
-} as TacticEditorData;
+};

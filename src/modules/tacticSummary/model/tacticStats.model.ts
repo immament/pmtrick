@@ -46,9 +46,10 @@ export class TacticStats {
     private calculateAts({ all, g, d, m, a }: TacticStatsSums): void {
         const dmCount = d.count + m.count;
         const dmTacklingAv = (d.tackling.sum + m.tackling.sum) / dmCount;
+        const dmStrenghtAv = (d.strength.sum + m.strength.sum) / dmCount;
         const maCount = m.count + a.count;
         const maStrengthAv = (m.strength.sum + a.strength.sum) / maCount;
-        const dmStrenghtAv = (d.strength.sum + m.strength.sum) / dmCount;
+
         const ats = {
             offside: [d.positioning.avg, d.speed.avg],
             pressingLow: [all.tackling.avg, all.speed.avg],
@@ -65,15 +66,7 @@ export class TacticStats {
             firstTimeShots: [a.finishing.avg, a.heading.avg],
         };
 
-        // Ats with one condition
-        this.countAtAverage(ats.markingZonal);
-        this.countAtAverage(ats.markingMan);
-        this.countAtAverage(ats.oneOnOnes);
-        this.countAtAverage(ats.gkStand);
-        this.countAtAverage(ats.gkRush);
-        this.countAtAverage(ats.longShots);
-        this.countAtAverage(ats.firstTimeShots);
-
+        this.countAtWithOneConditionAverages(ats);
         this.ats = ats;
 
         const maPositioningAv = (m.positioning.sum + a.positioning.sum) / maCount;
@@ -91,21 +84,25 @@ export class TacticStats {
             gkStand: [a.finishing.avg, a.heading.avg],
             gkRush: [a.technique.avg, a.heading.avg],
             longShots: [g.agility.avg, d.positioning.avg],
-            firstTimeShots: [g.reflexes.avg, a.heading.avg],
+            firstTimeShots: [g.reflexes.avg, d.heading.avg],
         };
 
-        this.countAtAverage(vsAts.markingZonal);
-        this.countAtAverage(vsAts.markingMan);
-        this.countAtAverage(vsAts.oneOnOnes);
-        this.countAtAverage(vsAts.gkStand);
-        this.countAtAverage(vsAts.gkRush);
-        this.countAtAverage(vsAts.longShots);
-        this.countAtAverage(vsAts.firstTimeShots);
+        this.countAtWithOneConditionAverages(vsAts);
         this.vsAts = vsAts;
     }
 
+    private countAtWithOneConditionAverages(ats: AdvanceTacticsValues) {
+        this.countAtAverage(ats.markingZonal);
+        this.countAtAverage(ats.markingMan);
+        this.countAtAverage(ats.oneOnOnes);
+        this.countAtAverage(ats.gkStand);
+        this.countAtAverage(ats.gkRush);
+        this.countAtAverage(ats.longShots);
+        this.countAtAverage(ats.firstTimeShots);
+    }
+
     private countAtAverage(at: (number | undefined)[]): void {
-        if (at[0] && at[1]) {
+        if (at[0] != undefined && at[1] != undefined) {
             at[2] = (at[0] + at[1]) / 2;
         } else {
             at[2] = 0;

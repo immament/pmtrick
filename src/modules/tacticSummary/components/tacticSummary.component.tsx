@@ -44,7 +44,7 @@ export class TacticSummary extends React.Component<Readonly<Record<string, unkno
 
         const sums = sumCalculator.calculate(data);
         const stats = sums && new TacticStats(sums);
-        log.debug('TacticSummary.positionsSubscriber stats:', stats);
+        log.debug('TacticSummary.positionsSubscriber stats:', stats, sums);
         this.setState({ sums, stats, statsOld: this.state.stats, sumsOld: this.state.sums });
     }
 
