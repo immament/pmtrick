@@ -5,7 +5,9 @@ function valueDeltaToText(delta?: number, fractionDigits = 1): JSX.Element | und
         <span className={delta > 0 ? 'pmt-positive-delta' : 'pmt-negative-delta'}>{` ${delta.toFixed(
             fractionDigits,
         )}`}</span>
-    ) : undefined;
+    ) : (
+        <span></span>
+    );
 }
 
 export function usePrevValue(value?: number, valueOld?: number, fractionDigits = 1): JSX.Element | undefined {

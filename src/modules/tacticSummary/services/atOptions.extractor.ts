@@ -3,7 +3,7 @@ import { singleton } from 'tsyringe';
 
 import { AdvanceTacticTypes } from '../model/tacticStats.model';
 
-type AdvenceTacticSelectIdsWithValue =
+type AdvAnceTacticSelectIdsWithValue =
     | 'Offside_Trap_1'
     | 'Pressing_1'
     | 'Pressing_2'
@@ -17,7 +17,7 @@ type AdvenceTacticSelectIdsWithValue =
     | 'RematesLonge_1'
     | 'RematesPrimeira_1';
 
-const atsConvertMap = new Map<AdvenceTacticSelectIdsWithValue, AdvanceTacticTypes>([
+const atsConvertMap = new Map<AdvAnceTacticSelectIdsWithValue, AdvanceTacticTypes>([
     ['Offside_Trap_1', 'offside'],
     ['Pressing_1', 'pressingHigh'],
     ['Pressing_2', 'pressingLow'],
@@ -37,18 +37,17 @@ export class AtOptionsExtractor {
     extract(): AdvanceTacticTypes[] {
         const atsElements = document.querySelectorAll<HTMLSelectElement>('#adv_options select');
         const ats = Array.from(atsElements).reduce((atsResult, at) => {
-            const atResult = atsConvertMap.get(`${at.id}_${at.value}` as AdvenceTacticSelectIdsWithValue);
+            const atResult = atsConvertMap.get(`${at.id}_${at.value}` as AdvAnceTacticSelectIdsWithValue);
             if (atResult) {
                 atsResult.push(atResult);
             }
             return atsResult;
         }, [] as AdvanceTacticTypes[]);
-        log.debug('atOptions.extractor', 'ats:', ats);
         return ats;
     }
 }
 
-// type AdvenceTacticSelectIds =
+// type AdvanceTacticSelectIds =
 //     | 'Offside_Trap'
 //     | 'Pressing'
 //     | 'Counter_Attack'

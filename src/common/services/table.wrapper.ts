@@ -7,21 +7,25 @@ function isHeader(obj: any): obj is Header {
 
 export class Table<T> {
     private _rows: DataRow<T>[] = [];
+    get rows(): DataRow<T>[] {
+        return this._rows;
+    }
+
     private _headers: Header[] = [];
     public get headers(): Header[] {
         return this._headers;
     }
 
-    constructor(private htmlTable: HTMLTableElement) {}
-
-    get rows(): DataRow<T>[] {
-        return this._rows;
+    public get htmlTable(): HTMLTableElement {
+        return this._htmlTable;
     }
 
-    init(callback: (row: HTMLTableRowElement, index: string) => DataRow<T> | Header | undefined): void {
-        log.info('Table.init - rows:', this.htmlTable.rows.length);
+    constructor(private _htmlTable: HTMLTableElement) {}
 
-        for (const [index, htmlRow] of Object.entries(this.htmlTable.rows)) {
+    init(callback: (row: HTMLTableRowElement, index: string) => DataRow<T> | Header | undefined): void {
+        log.info('Table.init - rows:', this._htmlTable.rows.length);
+
+        for (const [index, htmlRow] of Object.entries(this._htmlTable.rows)) {
             const row = callback(htmlRow, index);
 
             if (row) {

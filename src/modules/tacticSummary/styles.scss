@@ -2,12 +2,28 @@
     .nav a {
         font-size: 12px;
     }
+
+    // SUMS TABLE
     table.pmt-sums {
         font-size: 12px;
 
-        th:nth-child(n + 2),
-        td:nth-child(n + 2) {
+        th.pmt-gk {
+            width: 1%;
+        }
+        th:nth-child(n + 2) {
             text-align: center;
+        }
+        td:nth-child(n + 2) {
+            span:nth-child(1) {
+                text-align: right;
+                width: 35%;
+                display: inline-block;
+            }
+            span:nth-child(2) {
+                text-align: center;
+                width: 55%;
+                display: inline-block;
+            }
         }
 
         .col-xs-6 {
@@ -21,10 +37,10 @@
         font-size: xx-small;
     }
     .pmt-positive-delta {
-        color: green;
+        color: #379901;
     }
     .pmt-negative-delta {
-        color: orange;
+        color: red;
     }
 
     .pmt-ats {
@@ -53,6 +69,9 @@
 
         .pmt-ats-row.opponent {
             background-color: #def47a;
+            .pmt-at-name .glyphicon {
+                color: #d5d5d5 !important;
+            }
         }
 
         .pmt-ats-row.in-two-rows {
@@ -71,6 +90,13 @@
                 }
                 .pmt-at-value {
                     background-color: #f9f9f9;
+                    display: flex;
+                    justify-content: center;
+
+                    span:nth-child(1) {
+                        position: absolute;
+                        transform: translateX(-28px);
+                    }
                 }
                 .pmt-short-div {
                     padding: 4px 0 4px 0;
@@ -90,6 +116,9 @@
                 align-items: center;
                 border-right: 1px solid #eee;
                 justify-content: space-between;
+                .glyphicon {
+                    color: #1f532f;
+                }
             }
             .pmt-at-condition {
                 padding: 4px 0 4px 0;
@@ -97,8 +126,15 @@
             }
             .pmt-at-value {
                 padding: 4px 0 4px 0;
-                justify-content: center;
+                justify-content: right;
                 background-color: #f9f9f9;
+                span:nth-child(1) {
+                    text-align: right;
+                }
+                span:nth-child(2) {
+                    width: 40px;
+                    text-align: center;
+                }
             }
         }
         .pmt-ats-row:hover {

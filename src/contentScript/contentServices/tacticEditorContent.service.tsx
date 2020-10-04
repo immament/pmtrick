@@ -2,7 +2,7 @@ import { injectable } from 'tsyringe';
 
 import { ContentScriptService } from '@src/contentScript/contentServices/contentScript.service';
 
-import { TacticEditorService } from '../modules/tactidEditor.service';
+import { TacticEditorService } from '../../modules/tacticSummary/services/tactidEditor.service';
 
 @injectable()
 export default class TacticEditorContentService implements ContentScriptService {

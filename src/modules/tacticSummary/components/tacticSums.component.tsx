@@ -77,7 +77,7 @@ function SumValueCell(pos: StatsPosition, stat: PositionStatRecord, statOld?: Po
     if (pos == 'g') {
         return (
             <td key={pos} style={geValueStyle(stat.avg)}>
-                {stat.sum} {sumDeltaElement}
+                {sumDeltaElement} <span>{stat.sum}</span>
             </td>
         );
     }
@@ -85,10 +85,10 @@ function SumValueCell(pos: StatsPosition, stat: PositionStatRecord, statOld?: Po
     return (
         <React.Fragment key={pos}>
             <td key={pos}>
-                {stat.sum} {sumDeltaElement}
+                {sumDeltaElement} <span>{stat.sum}</span>
             </td>
             <td style={geValueStyle(stat.avg)}>
-                {stat.avg} {avgDeltaElement}
+                {avgDeltaElement} <span>{stat.avg}</span>
             </td>
         </React.Fragment>
     );
@@ -99,11 +99,14 @@ function SumsTableHeader(): JSX.Element {
         <thead>
             <tr>
                 <th>Skill</th>
-                {StatsPositionKeysArr.map((pos) => (
-                    <th colSpan={pos == 'g' ? 1 : 2} key={pos}>
-                        {positionToText(pos)}
-                    </th>
-                ))}
+                {StatsPositionKeysArr.map((pos) => {
+                    const thProps = pos == 'g' ? { className: 'pmt-gk' } : { colSpan: 2 };
+                    return (
+                        <th key={pos} {...thProps}>
+                            {positionToText(pos)}
+                        </th>
+                    );
+                })}
             </tr>
             <tr>
                 <th></th>

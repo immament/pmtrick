@@ -48,8 +48,7 @@ export const AtValueInTowRows: AtValue = ({ index, groupName, value, valueOld }:
         <div key={index} className="col-xs-3 pmt-at-details">
             <div className="pmt-short-div text-center pmt-at-condition">{groupName}</div>
             <div className="pmt-short-div text-center pmt-at-value" style={valueStyle}>
-                {formatedValue}
-                {valueDeltaElement}
+                {valueDeltaElement} <span>{formatedValue}</span>
             </div>
         </div>
     );
@@ -63,8 +62,7 @@ export const AtValueInOneRow: AtValue = ({ index, groupName, value, valueOld }: 
         <React.Fragment key={index}>
             <div className="col-xs-2 pmt-at-condition">{groupName}</div>
             <div className="col-xs-1 text-center pmt-at-value" style={valueStyle}>
-                {formatedValue}
-                {valueDeltaElement}
+                {valueDeltaElement} <span>{formatedValue}</span>
             </div>
         </React.Fragment>
     );

@@ -1,12 +1,27 @@
-import { injectable } from 'tsyringe';
-
-import { FutureSkillsSummaryWithBest } from '@src/common/model/player.model';
+import { FutureSkillsSummaryWithBest, SkillsSummaryCombo } from '@src/common/model/player.model';
 import { createFutureSkillsTootip } from '@src/common/renders/createFutureSkillsTooltip';
 import { SkillsSummary } from '@src/modules/tacticSummary/model/skillsSummary.model';
 
-@injectable()
-export class PlayersSkillsTableService {
-    createFutureSkillsSummaryCell(skillsSummary?: FutureSkillsSummaryWithBest): HTMLTableCellElement {
+export abstract class PlayersSkillsTableService {
+    abstract prepareTable(playersTable: HTMLTableElement): void;
+
+    abstract createHeaderCells(): HTMLTableCellElement[];
+
+    abstract createSkillsSummaryCells(summaries?: SkillsSummaryCombo): HTMLTableCellElement[];
+
+    getPlayersTable(): HTMLTableElement | undefined {
+        const tables = document.querySelectorAll<HTMLTableElement>('table.table_border');
+
+        for (const table of Object.values(tables)) {
+            if (this.isSkillsTable(table)) {
+                return table;
+            }
+        }
+
+        return;
+    }
+
+    protected createFutureSkillsSummaryCell(skillsSummary?: FutureSkillsSummaryWithBest): HTMLTableCellElement {
         const cell = this.createSkillsSummaryCell(skillsSummary?.best);
         if (skillsSummary) {
             cell.title += '\n' + createFutureSkillsTootip(skillsSummary);
@@ -14,7 +29,7 @@ export class PlayersSkillsTableService {
         return cell;
     }
 
-    createSkillsSummaryCell(skillsSummary?: SkillsSummary): HTMLTableCellElement {
+    protected createSkillsSummaryCell(skillsSummary?: SkillsSummary): HTMLTableCellElement {
         if (skillsSummary) {
             const classStyles: string[] = [];
             const rank = skillsSummary.rank ? skillsSummary.rank : 'last';
@@ -29,23 +44,17 @@ export class PlayersSkillsTableService {
         }
     }
 
-    getPlayersTable(): HTMLTableElement | undefined {
-        const tables = document.querySelectorAll<HTMLTableElement>('table.table_border');
+    protected createHeaderCell(content: string): HTMLTableCellElement {
+        const cell = document.createElement('td');
+        cell.classList.add('cabecalhos');
+        cell.innerHTML = content;
 
-        for (const table of Object.values(tables)) {
-            if (this.isSkillsTable(table)) {
-                return table;
-            }
-        }
-
-        return;
+        return cell;
     }
 
     private createGsCell(content: string, tooltip?: string, classStyles?: string[]): HTMLTableCellElement {
         const cell = document.createElement('td');
-        cell.width = '3%';
-        cell.align = 'center';
-        cell.classList.add('team_players');
+        cell.classList.add('team_players', 'pmt-gs');
         if (classStyles) {
             cell.classList.add(...classStyles);
         }
@@ -71,16 +80,7 @@ export class PlayersSkillsTableService {
     }
 
     private formatGs(gs: number): string {
-        return gs ? gs.toFixed(2) : '';
-    }
-
-    createHeaderCell(content: string): HTMLTableCellElement {
-        const cell = document.createElement('td');
-        cell.width = '3%';
-        cell.classList.add('cabecalhos');
-        cell.innerHTML = content;
-
-        return cell;
+        return gs ? gs.toFixed(1) : '';
     }
 
     private isSkillsTable(table: HTMLTableElement): boolean {

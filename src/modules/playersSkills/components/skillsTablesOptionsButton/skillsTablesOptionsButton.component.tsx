@@ -1,8 +1,16 @@
 import React, { ReactNode } from 'react';
+import { container } from 'tsyringe';
 
+import { PlayersSkillsViewService } from '@src/modules/playersSkills/services/playersSkillsView.service';
+
+import { PlayersSkillsPages } from '../../services/playersSkillsTable.factory';
 import SkillsTableOptions from '../skillsTableOptionsModal/skillsTableOptions.component';
 
-export class SkillsTablesOptionsButton extends React.Component<unknown, { show: boolean }> {
+type SkillsTablesOptionsButtonProps = {
+    pageType: PlayersSkillsPages;
+};
+
+export class SkillsTablesOptionsButton extends React.Component<SkillsTablesOptionsButtonProps, { show: boolean }> {
     state = {
         show: false,
     };
@@ -13,10 +21,14 @@ export class SkillsTablesOptionsButton extends React.Component<unknown, { show: 
         });
     };
 
-    private onClose = (_e: React.MouseEvent<HTMLButtonElement>): void => {
+    private handleClose = (_e: React.MouseEvent<HTMLButtonElement>): void => {
         this.setState({
             show: false,
         });
+    };
+    private handleSave = (): void => {
+        const playersSkillsViewService = container.resolve(PlayersSkillsViewService);
+        playersSkillsViewService.run();
     };
 
     render(): ReactNode {
@@ -25,7 +37,7 @@ export class SkillsTablesOptionsButton extends React.Component<unknown, { show: 
                 <button className="btn btn-default btn-success btn-xs" onClick={this.showModal}>
                     Options
                 </button>
-                <SkillsTableOptions show={this.state.show} onClose={this.onClose} />
+                <SkillsTableOptions show={this.state.show} onClose={this.handleClose} onSave={this.handleSave} />
             </React.Fragment>
         );
     }

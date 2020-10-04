@@ -4,32 +4,32 @@ import { TacticEditorCustomEvents } from '@src/modules/tacticSummary/model/tacti
 
 type ExtendedWindow = typeof window & {
     changed: () => void;
-    oldChanged: () => void;
+    pmtOldChanged?: () => void;
     selectedpositions: string[];
 };
 
 const anyWindow = window as ExtendedWindow;
 
 function listenSquandChanges(): void {
-    anyWindow.oldChanged = anyWindow.changed;
+    anyWindow.pmtOldChanged = anyWindow.changed;
     anyWindow.changed = () => {
         console.log('my changed');
-        anyWindow.oldChanged();
+        anyWindow.pmtOldChanged && anyWindow.pmtOldChanged();
         notify('PMT_tacticSquadChanged', anyWindow.selectedpositions);
     };
 }
 
-function listenAdvenceTacticChanges() {
+function listenAdvanceTacticChanges() {
     // injected to use jquery
     injectScript(`$('#adv_options select').each(function(a, el) {
         $(el).selectmenu({
             change: function(a, e) {
                 $(el).change(),
                 console.log('selectmenu changed', a, e );
-                oldChanged();
+                pmtOldChanged();
                 document.dispatchEvent(
                     new CustomEvent('PMT_advTacticChanged', {
-                        detail: ['aaa', 'bbb']
+                        detail: []
                     })
                 );
             }
@@ -46,9 +46,24 @@ function notify<T>(eventName: TacticEditorCustomEvents, data: T) {
 }
 
 function prepare() {
+    console.log('prepare.......');
+    const manager = document.querySelector('#managerTabs');
+    if (!manager) {
+        console.log('prepare....... managerTabs not avaiable..');
+        setTimeout(prepare, 1000);
+        return;
+    }
+    var style = window.getComputedStyle(manager);
+    if (style.display === 'none') {
+        console.log('prepare....... managerTabs no visible yet ... ');
+        setTimeout(prepare, 1000);
+        return;
+    }
+
     listenSquandChanges();
-    setTimeout(() => listenAdvenceTacticChanges(), 1000);
-    notify('PMT_tacticInit', '');
+    listenAdvanceTacticChanges();
+
+    notify('PMT_tacticInit', 'prepare');
 }
 
 prepare();

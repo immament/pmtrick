@@ -5,7 +5,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 module.exports = {
     entry: {
         contentscript: path.join(__dirname, 'src/contentScript/contentScriptRoot.ts'),
-        tacticEditor: path.join(__dirname, 'src/contentScript/modules/tacticEditor.injected.ts'),
+        tacticEditor: path.join(__dirname, 'src/modules/tacticSummary/services/tacticEditor.injected.ts'),
     },
     output: {
         path: path.join(__dirname, 'dist/js'),

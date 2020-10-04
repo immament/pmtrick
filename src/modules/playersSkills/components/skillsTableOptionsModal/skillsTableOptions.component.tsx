@@ -7,7 +7,6 @@ import {
     SkillsTableOptionsRepository,
 } from '@src/common/services/storage/skillsTableOptions.repository';
 import { pick } from '@src/common/services/utils/utils';
-import { PlayersSkillsViewService } from '@src/contentScript/modules/playersSkillsView.service';
 
 import { Modal } from '../../../../common/components/modal';
 
@@ -17,6 +16,7 @@ import { numberOptions } from './selectOptions.component';
 export type SkillsTableOptionsProps = {
     show: boolean;
     onClose?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    onSave?: () => void;
 };
 
 type SkillsTableOptionsState = {
@@ -62,8 +62,7 @@ export default class SkillsTableOptions extends React.Component<SkillsTableOptio
     private async save(): Promise<void> {
         const savedOptions = pick(this.state, ..._savedOptions) as MatchesInSeasons;
         await this.storageService.save(savedOptions);
-        const playersSkillsViewService = container.resolve(PlayersSkillsViewService);
-        playersSkillsViewService.run();
+        this.props.onSave && this.props.onSave();
     }
 
     private handleChangeAge(e: React.ChangeEvent<HTMLSelectElement>): void {

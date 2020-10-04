@@ -25,21 +25,6 @@ module.exports = {
         return options;
     },
     webpackFinal: async (config) => {
-        // config.module.rules[0].use[0].options.plugins.splice(8, 1);
-        // console.log(
-        //     'config.module.rules',
-        //     util.inspect(config.module.rules[0], { showHidden: false, depth: 7, colors: true }),
-        // );
-
-        // config.module.rules = [
-        //     ...config.module.rules,
-        //     {
-        //         exclude: /node_modules/,
-        //         test: /\.tsx?$/,
-        //         use: 'ts-loader',
-        //     },
-        // ];
-
         config.module.rules.push({
             exclude: /node_modules/,
             test: /\.scss$/,
@@ -63,22 +48,6 @@ module.exports = {
                 '@src': path.resolve(__dirname, '../src/'),
             },
         };
-
-        config.plugins = [
-            ...config.plugins,
-            new webpack.NormalModuleReplacementPlugin(/webextension-polyfill-ts/, (resource) => {
-                // Gets absolute path to mock `webextension-polyfill-ts` package
-                // NOTE: this is required beacuse the `webextension-polyfill-ts`
-                // package can't be used outside the environment provided by web extensions
-                const absRootMockPath = path.resolve(__dirname, '../src/__mocks__/webextension-polyfill-ts.ts');
-
-                // Gets relative path from requesting module to our mocked module
-                const relativePath = path.relative(resource.context, absRootMockPath);
-
-                // Updates the `resource.request` to reference our mocked module instead of the real one
-                resource.request = relativePath;
-            }),
-        ];
 
         return config;
     },

@@ -1,5 +1,5 @@
 import log from 'loglevel';
-import { singleton } from 'tsyringe';
+import { inject, registry, singleton } from 'tsyringe';
 
 import { FullTrainings } from '@src/common/model/fullTranings.model';
 import { Player, PlayerWithSkillsSummaries, SkillsSummaryCombo } from '@src/common/model/player.model';
@@ -14,9 +14,10 @@ import {
 } from '@src/common/services/storage/skillsTableOptions.repository';
 import { DataRow, Header, Table } from '@src/common/services/table.wrapper';
 
-import { FutureSkillsService } from '../../common/services/futureSkills.service';
-import { SkillCalculatorService } from '../../common/services/skillCalculator.service';
+import { FutureSkillsService } from '../../../common/services/futureSkills.service';
+import { SkillCalculatorService } from '../../../common/services/skillCalculator.service';
 
+import { playersSkillsTableFactory } from './playersSkillsTable.factory';
 import { PlayersSkillsTableService } from './playersSkillsTable.service';
 
 const _potentialConfig = getPotentialConfig();
@@ -26,6 +27,13 @@ const _potentialConfig = getPotentialConfig();
  * Oblicza dodatkowe dane graczy
  * Dodaje kolumny do tabeli graczy
  */
+
+@registry([
+    {
+        token: 'PlayersSkillsTableService',
+        useFactory: playersSkillsTableFactory,
+    },
+])
 @singleton()
 export class PlayersSkillsViewService {
     private playersTable?: Table<PlayerWithSkillsSummaries>;
@@ -38,8 +46,8 @@ export class PlayersSkillsViewService {
         private readonly skillCaluclatorService: SkillCalculatorService,
         private readonly futureSkillsService: FutureSkillsService,
         private readonly skillsTableOptionsRepository: SkillsTableOptionsRepository,
-        private readonly view: PlayersSkillsTableService,
         private readonly futurePlayersRankService: FuturePlayersRankService,
+        @inject('PlayersSkillsTableService') private readonly tableService: PlayersSkillsTableService,
     ) {
         log.debug('PlayersSkillsViewService.ctor +');
     }
@@ -49,9 +57,10 @@ export class PlayersSkillsViewService {
         await this.refreshConfig();
         if (!this.playersTable) {
             this.playersTable = this.extractTableFromHtml();
+            this.playersTable && this.tableService?.prepareTable(this.playersTable.htmlTable);
         }
 
-        this.update(this.playersTable);
+        return this.update(this.playersTable);
     }
 
     private async refreshConfig(): Promise<void> {
@@ -75,20 +84,16 @@ export class PlayersSkillsViewService {
             const player = row.data;
             row.data = this.processPlayer(player);
 
-            row.applyHtmlCells(this.createSkillsSummaryCells(row.data.skillsSummaries));
+            row.applyHtmlCells(this.tableService.createSkillsSummaryCells(row.data.skillsSummaries));
         }
         for (const header of playersTable.headers) {
-            header.applyHtmlCells(this.createHeaderCells());
+            header.applyHtmlCells(this.tableService.createHeaderCells());
         }
-    }
-
-    private createHeaderCells(): HTMLTableCellElement[] {
-        return [this.view.createHeaderCell('GS'), this.view.createHeaderCell('GS>'), this.view.createHeaderCell('GS<')];
     }
 
     // #region Przetwarza tabele graczy <Player> z umiejątnościami
     private extractTableFromHtml(): Table<Player> | undefined {
-        const htmlPlayersTable = this.view.getPlayersTable();
+        const htmlPlayersTable = this.tableService.getPlayersTable();
         if (!htmlPlayersTable) {
             log.warn('No players list on page!');
             return;
@@ -127,14 +132,6 @@ export class PlayersSkillsViewService {
 
     // Dodaje kolumny do tabeli graczy
 
-    private createSkillsSummaryCells(summaries?: SkillsSummaryCombo): HTMLTableCellElement[] {
-        return [
-            this.view.createSkillsSummaryCell(summaries?.current?.best),
-            this.view.createFutureSkillsSummaryCell(summaries?.future),
-            this.view.createFutureSkillsSummaryCell(summaries?.futureMax),
-        ];
-    }
-
     // Oblicza dodatkowe dane graczy
     private processPlayer(player: Player): PlayerWithSkillsSummaries {
         const skillsSummaries: SkillsSummaryCombo = {
@@ -153,23 +150,25 @@ export class PlayersSkillsViewService {
             } else {
                 const potentialDelta = _potentialConfig[player.potential];
 
-                skillsSummaries.future = this.futureSkillsService.countSkillsInFuture(
-                    skillsSummaries.current,
-                    player.age,
-                    this.futureAge,
-                    this.fullTrainings,
-                    potentialDelta.min,
-                    this.options,
-                );
+                if (potentialDelta) {
+                    skillsSummaries.future = this.futureSkillsService.countSkillsInFuture(
+                        skillsSummaries.current,
+                        player.age,
+                        this.futureAge,
+                        this.fullTrainings,
+                        potentialDelta.min,
+                        this.options,
+                    );
 
-                skillsSummaries.futureMax = this.futureSkillsService.countSkillsInFuture(
-                    skillsSummaries.current,
-                    player.age,
-                    this.futureAge,
-                    this.fullTrainings,
-                    potentialDelta.max,
-                    this.options,
-                );
+                    skillsSummaries.futureMax = this.futureSkillsService.countSkillsInFuture(
+                        skillsSummaries.current,
+                        player.age,
+                        this.futureAge,
+                        this.fullTrainings,
+                        potentialDelta.max,
+                        this.options,
+                    );
+                }
             }
         }
         return { ...player, skillsSummaries };

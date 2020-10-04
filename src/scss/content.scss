@@ -56,3 +56,40 @@
 .position-F {
     color: #f800ae;
 }
+
+// TRANSFER LIST - SKILLS
+
+table.pmt-tl-skills {
+    .table_header {
+        td {
+            font-size: 11px;
+            .cabecalhos {
+                font-size: 11px;
+            }
+            padding-left: 3px !important;
+        }
+    }
+    .team_players {
+        font-size: 11px;
+    }
+    td.pmt-gs {
+        text-align: center;
+        width: 2%;
+    }
+    // WAGE COLUMN
+    td:nth-child(17) {
+        display: none;
+    }
+    // OFFER BUTTON COLUMN
+    td:nth-child(21) {
+        width: 3%;
+    }
+}
+
+// TEAM PLAYERS LIST - SKILLS
+table.pmt-tpl-skills {
+    td.pmt-gs {
+        text-align: center;
+        width: 2%;
+    }
+}
