@@ -17,6 +17,6 @@
         "experimentalDecorators": true,
         "allowSyntheticDefaultImports": true,
         "emitDecoratorMetadata": true,
-        "typeRoots": ["node_modules/@types", "node_modules/webextension-polyfill-ts/lib"]
+        "typeRoots": ["node_modules/@types"]
     }
 }
