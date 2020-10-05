@@ -1,7 +1,7 @@
 {
     "name": "pmtrick-browser-extension",
     "version": "0.0.1",
-    "description": "A Planetarium Manager Browser Extension",
+    "description": "A Planetarium Manager online football manager Browser Extension",
     "main": "index.js",
     "scripts": {
         "build": "webpack --config webpack.prod.js",
@@ -17,7 +17,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/immament"
+        "url": "git+https://github.com/immament/pmtrick"
     },
     "keywords": [
         "Planetarium Manager",
@@ -29,9 +29,9 @@
     "author": "immament",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/immament"
+        "url": "https://github.com/immament/pmtrick/issues"
     },
-    "homepage": "https://github.com/immament",
+    "homepage": "https://github.com/immament/pmtrick/blob/master/README.md",
     "devDependencies": {
         "@babel/core": "^7.7.7",
         "@babel/preset-env": "^7.7.7",
