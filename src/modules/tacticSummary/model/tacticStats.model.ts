@@ -1,3 +1,4 @@
+import { PlayerPositionType } from '@src/common/model/player.model';
 import { PlayerSkillsEnum, PlayerSkillsType } from '@src/common/model/playerSkills.model';
 
 export enum StatsPosition {
@@ -6,6 +7,17 @@ export enum StatsPosition {
     'd' = 'd',
     'm' = 'm',
     'a' = 'a',
+}
+
+const statsPositionKeyToPlayerPositionMap: Record<StatsPositionKeys, PlayerPositionType> = {
+    g: 'G',
+    d: 'D',
+    m: 'M',
+    a: 'F',
+};
+
+export function positionGroupToPlayerPosition(positionGroup: StatsPositionKeys): PlayerPositionType {
+    return statsPositionKeyToPlayerPositionMap[positionGroup];
 }
 
 export type StatsPositionKeys = 'g' | 'd' | 'm' | 'a';

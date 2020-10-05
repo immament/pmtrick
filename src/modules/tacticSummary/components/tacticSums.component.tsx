@@ -13,7 +13,7 @@ import {
 } from '../model/tacticStats.model';
 
 const statsPositionTexts = {
-    all: 'all',
+    all: 'All',
     g: 'Golkeapers',
     d: 'Defenders',
     m: 'Midfielders',
