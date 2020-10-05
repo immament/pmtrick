@@ -4,13 +4,6 @@ import { SkillsSummary } from '../../modules/tacticSummary/model/skillsSummary.m
 
 import { PlayerSkills } from './playerSkills.model';
 
-enum PlayerPosition2 {
-    G = 'G',
-    D = 'D',
-    M = 'M',
-    F = 'F',
-}
-
 export type PlayerPositionType = 'G' | 'D' | 'M' | 'F';
 export const playerPositionValues: PlayerPositionType[] = ['G', 'D', 'M', 'F'];
 
@@ -22,7 +15,7 @@ export enum PlayerPositionEnum {
 }
 
 export function isPlayerPosition(pos: string): pos is PlayerPositionType {
-    return pos in PlayerPosition2;
+    return pos in playerPositionValues;
 }
 
 export enum PlayerQuality {

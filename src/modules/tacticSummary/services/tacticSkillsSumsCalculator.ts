@@ -1,3 +1,4 @@
+import log from 'loglevel';
 import { injectable } from 'tsyringe';
 
 import { PlayerWithSkillsSummaries, SkillsSummaryCombo } from '@src/common/model/player.model';
@@ -5,7 +6,15 @@ import { PlayerSkillsEnum, PlayerSkillsType } from '@src/common/model/playerSkil
 import { SkillCalculatorService } from '@src/common/services/skillCalculator.service';
 import { TacticEditorData, TacticEditorPosition } from '@src/modules/tacticSummary/model/tacticEditorPlayer.model';
 
-import { StatRecord, StatsKeysArr, StatsPosition, TacticStatsSums } from '../model/tacticStats.model';
+import {
+    positionGroupToPlayerPosition,
+    StatRecord,
+    StatsKeys,
+    StatsKeysArr,
+    StatsPosition,
+    StatsPositionKeys,
+    TacticStatsSums,
+} from '../model/tacticStats.model';
 
 @injectable()
 export class TacticSkillsSumsCalculator {
@@ -21,7 +30,8 @@ export class TacticSkillsSumsCalculator {
         this.calculateForPositions(data);
         this.calculateSumAll();
 
-        this.calculateAvg();
+        this.calculateAverages();
+        log.debug('tacticSkillsSumsCalculator', 'sums:', this.statsResult);
         return this.statsResult;
     }
 
@@ -75,38 +85,47 @@ export class TacticSkillsSumsCalculator {
         stats.all.gs.sum = stats.g.gs.sum + stats.d.gs.sum + stats.m.gs.sum + stats.a.gs.sum;
     }
 
-    private roundAvg(n: number) {
+    private round(n: number) {
         return Math.round((n + Number.EPSILON) * 100) / 100;
     }
 
-    private calculateAvg() {
+    private calculateAverages() {
         for (const positionStat of Object.values(this.statsResult)) {
-            for (const position of StatsKeysArr) {
-                const skillStat = positionStat[position];
-                skillStat.avg = positionStat.count > 0 ? this.roundAvg(skillStat.sum / positionStat.count) : undefined;
+            for (const statKey of StatsKeysArr) {
+                const stat = positionStat[statKey];
+                stat.avg = this.calculateAvg(stat.sum, positionStat.count);
             }
         }
+    }
+    private calculateAvg(sum: number, count: number): number | undefined {
+        return count > 0 ? this.round(sum / count) : undefined;
     }
 
     private caluclateSkillsStats(position: TacticEditorPosition): void {
         for (const skill in PlayerSkillsEnum) {
-            this.caluclateStat(position, skill as PlayerSkillsType);
+            this.caluclateSkillStat(position, skill as PlayerSkillsType);
         }
     }
 
     private calculateGsStat({ player, positionGroup }: TacticEditorPosition<PlayerWithSkillsSummaries>) {
-        if (player && positionGroup) {
-            const skillValue = player?.skillsSummaries?.current?.best?.gs || 0;
-            const currentStat = this.statsResult[positionGroup].gs;
-            currentStat.sum = skillValue + currentStat.sum;
+        if (positionGroup && player?.skillsSummaries?.current) {
+            const playerPosition = positionGroupToPlayerPosition(positionGroup);
+            const value = player.skillsSummaries.current[playerPosition].gs;
+            if (value) this.addToSumWithRound(positionGroup, 'gs', value);
         }
     }
 
-    private caluclateStat(position: TacticEditorPosition, skill: PlayerSkillsType): void {
-        if (position.player && position.positionGroup) {
-            const skillValue = position.player.skills[skill] || 0;
-            const currentStat = this.statsResult[position.positionGroup][skill];
-            currentStat.sum = skillValue + currentStat.sum;
+    private caluclateSkillStat({ player, positionGroup }: TacticEditorPosition, skill: PlayerSkillsType): void {
+        if (player && positionGroup) {
+            const skillValue = player.skills[skill];
+            if (skillValue) this.addToSum(positionGroup, skill, skillValue);
         }
+    }
+
+    private addToSum(positionGroup: StatsPositionKeys, statKey: StatsKeys, value: number) {
+        this.statsResult[positionGroup][statKey].sum += value;
+    }
+    private addToSumWithRound(positionGroup: StatsPositionKeys, statKey: StatsKeys, value: number) {
+        this.statsResult[positionGroup][statKey].sum = this.round(this.statsResult[positionGroup][statKey].sum + value);
     }
 }

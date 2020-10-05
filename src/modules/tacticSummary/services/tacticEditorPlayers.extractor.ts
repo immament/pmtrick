@@ -50,7 +50,7 @@ export class TacticEditorPlayersExtractor {
     ]);
 
     extractPositions(): TacticEditorPosition[] {
-        const playerRowsElements = document.querySelectorAll<HTMLElement>('.player-row');
+        const playerRowsElements = document.querySelectorAll<HTMLElement>('#starting_eleven .player-row');
         const playerRows = Array.from(playerRowsElements);
         const result = this.extractPlayers(playerRows);
         return result;
@@ -69,7 +69,7 @@ export class TacticEditorPlayersExtractor {
                 return acc;
             },
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            { skills: {} } as any,
+            { skills: {} } as TacticEditorPlayer,
         ) as TacticEditorPlayer;
     }
 
@@ -129,7 +129,7 @@ export class TacticEditorPlayersExtractor {
 
     // QUALIT
 
-    qualities: { [x: number]: PlayerQuality } = {
+    private qualities: { [x: number]: PlayerQuality } = {
         10: PlayerQuality.Terrible,
         20: PlayerQuality['Very Bad'],
         30: PlayerQuality.Bad,
@@ -148,7 +148,7 @@ export class TacticEditorPlayersExtractor {
 
     // Experience
 
-    experiences: { [x: number]: PlayerQuality } = {
+    private experiences: { [x: number]: PlayerQuality } = {
         0: PlayerQuality.Terrible,
         11: PlayerQuality['Very Bad'],
         22: PlayerQuality.Bad,
