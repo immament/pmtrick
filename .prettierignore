@@ -1,2 +1,5 @@
 node_modules/*
 *.snap
+dist/js/*
+output/*
+storybook-static/*
