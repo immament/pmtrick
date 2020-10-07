@@ -1,15 +1,16 @@
 import log from 'loglevel';
-import { container, singleton } from 'tsyringe';
+import { container, registry, singleton } from 'tsyringe';
 
 import { ContentScriptService } from '../contentServices/contentScript.service';
+import PlayersSkillsContentService from '../contentServices/playersSkillsContent.service';
 import TacticEditorContentService from '../contentServices/tacticEditorContent.service';
 
 @singleton()
+@registry([
+    { token: 'ContentScriptService', useClass: PlayersSkillsContentService },
+    { token: 'ContentScriptService', useClass: TacticEditorContentService },
+])
 export class ContentScriptRegistry {
-    constructor() {
-        this.registryContent();
-    }
-
     applyContent(): void {
         const url = location.href;
         const services = container.resolveAll<ContentScriptService>('ContentScriptService');
@@ -21,11 +22,5 @@ export class ContentScriptRegistry {
                 service.apply();
             }
         }
-    }
-
-    registryContent(): void {
-        log.debug('ContentScriptRegistry.registryContent+');
-        // container.register('ContentScriptService', PlayersSkillsContentService);
-        container.register('ContentScriptService', TacticEditorContentService);
     }
 }
