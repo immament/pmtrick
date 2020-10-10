@@ -21,7 +21,7 @@ export function RankingFormGroup({ id, handleChange, value, label }: RankingForm
                     value={value}
                     onChange={handleChange}
                     className="form-control"
-                    min="0"
+                    min="1"
                     max="100"
                 ></input>
             </div>

@@ -30,15 +30,6 @@
     padding: 0px;
 }
 
-// MODAL
-.pmt-modal {
-    .modal-body {
-        overflow-x: auto;
-        overflow-y: auto;
-        max-height: calc(100vh - 100px);
-    }
-}
-
 /* POSITION COLORS */
 
 .position-G {
@@ -92,4 +83,8 @@ table.pmt-tpl-skills {
         text-align: center;
         width: 2%;
     }
+}
+
+#pmt-options-root {
+    padding-right: 10px;
 }

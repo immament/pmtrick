@@ -3,4 +3,26 @@
 
     text-shadow: none;
     color: #333333;
+
+    .modal-content {
+        .modal-header {
+            border-radius: 5px 4px 0 0;
+            background-color: #5aa608;
+            border-color: #5aa608;
+            h4 {
+                color: #fff;
+            }
+            .close {
+                color: #fff;
+
+                opacity: 0.7;
+            }
+        }
+
+        .modal-body {
+            overflow-x: auto;
+            overflow-y: auto;
+            max-height: calc(100vh - 100px);
+        }
+    }
 }
