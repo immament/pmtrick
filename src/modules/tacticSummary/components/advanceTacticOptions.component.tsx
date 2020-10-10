@@ -18,7 +18,7 @@ export const AdvanceTacticOptions = React.memo(function AdvanceTacticOptions({
     viewStyle,
     ...props
 }: AdvanceTacticOptionsProps): JSX.Element {
-    log.debug('AdvanceTacticOptions.component', 'RENDER +');
+    log.trace('AdvanceTacticOptions.component', 'RENDER +');
     return (
         <div className="row panel panel-default pmt-ats-options">
             <div className="panel-body">

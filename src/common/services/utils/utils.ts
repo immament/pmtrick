@@ -27,7 +27,7 @@ export function setProperty<T, K extends keyof T>(obj: T, key: K, value: T[K]): 
 
 export function usePrevious<T>(value?: T): T | undefined {
     const ref = useRef<T>();
-    log.debug('utils', 'ref.current', ref.current, value);
+    log.trace('utils', 'ref.current', ref.current, value);
     useEffect(() => {
         ref.current = value;
     });

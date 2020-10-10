@@ -31,7 +31,7 @@ export class TacticSkillsSumsCalculator {
         this.calculateSumAll();
 
         this.calculateAverages();
-        log.debug('tacticSkillsSumsCalculator', 'sums:', this.statsResult);
+        log.trace('tacticSkillsSumsCalculator', 'sums:', this.statsResult);
         return this.statsResult;
     }
 

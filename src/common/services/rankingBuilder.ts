@@ -5,9 +5,9 @@ import { FullTrainings } from '@src/common/model/fullTranings.model';
 import { PlayerWithSkillsSummaries } from '@src/common/model/player.model';
 
 import { FutureSkillsService } from './futureSkills.service';
-import { MatchesInSeasons } from './storage/skillsTableOptions.repository';
+import { FuturePredicationSettings } from './settings/futurePredication.settings';
 
-type RankingOptions = MatchesInSeasons;
+type RankingOptions = FuturePredicationSettings;
 
 type RankingsPerAge = {
     [age: number]: number[];
@@ -34,7 +34,7 @@ export class RankingBuilder {
     }
 
     create(players: PlayerWithSkillsSummaries[], options: RankingOptions): Ranking {
-        log.debug('RankingBuilder.create +', options);
+        log.trace('RankingBuilder.create +', options);
         const rankings = this.prepareRankingsPerAge();
 
         const fullTrainings = new FullTrainings(options);

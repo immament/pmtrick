@@ -1,17 +1,25 @@
 import log from 'loglevel';
+import { Subscription } from 'rxjs';
 import { inject, registry, singleton } from 'tsyringe';
 
 import { FullTrainings } from '@src/common/model/fullTranings.model';
-import { Player, PlayerWithSkillsSummaries, SkillsSummaryCombo } from '@src/common/model/player.model';
+import {
+    FutureSkillsSummaryWithBest,
+    Player,
+    playerPositionValues,
+    PlayerWithSkillsSummaries,
+    SkillsSummaryCombo,
+} from '@src/common/model/player.model';
 import { getPotentialConfig } from '@src/common/model/potential.model';
 import { HtmlElementExtractor } from '@src/common/services/extractors/htmlElement.mapper';
 import { getPlayerMapper } from '@src/common/services/extractors/htmlPlayer.mapper';
-import { FuturePlayersRankService } from '@src/common/services/playersRank.service';
+import { PlayersRankService, PlayersRankServiceFactory } from '@src/common/services/playersRank.service';
 import {
-    MatchesInSeasons,
-    maxMatchesInSeasons,
-    SkillsTableOptionsRepository,
-} from '@src/common/services/storage/skillsTableOptions.repository';
+    _futurePredicationSettingsKey,
+    FuturePredicationSettings,
+} from '@src/common/services/settings/futurePredication.settings';
+import { _rankingsSettingsKey, RankingsSettings } from '@src/common/services/settings/settings';
+import { SettingsChange, SettingsRepository } from '@src/common/services/settings/settings.repository';
 import { DataRow, Header, Table } from '@src/common/services/table.wrapper';
 
 import { FutureSkillsService } from '../../../common/services/futureSkills.service';
@@ -27,7 +35,6 @@ const _potentialConfig = getPotentialConfig();
  * Oblicza dodatkowe dane graczy
  * Dodaje kolumny do tabeli graczy
  */
-
 @registry([
     {
         token: 'PlayersSkillsTableService',
@@ -40,42 +47,33 @@ export class PlayersSkillsViewService {
 
     private fullTrainings?: FullTrainings;
     private futureAge?: number;
-    private options: MatchesInSeasons = maxMatchesInSeasons;
+    private futurePredicationSettings?: FuturePredicationSettings;
+    private rankService?: PlayersRankService;
+
+    private onSettingsChangedSubs?: Subscription;
 
     constructor(
         private readonly skillCaluclatorService: SkillCalculatorService,
         private readonly futureSkillsService: FutureSkillsService,
-        private readonly skillsTableOptionsRepository: SkillsTableOptionsRepository,
-        private readonly futurePlayersRankService: FuturePlayersRankService,
+        private readonly settingsRepository: SettingsRepository,
+        private readonly playersRankServiceFactory: PlayersRankServiceFactory,
         @inject('PlayersSkillsTableService') private readonly tableService: PlayersSkillsTableService,
     ) {
-        log.debug('PlayersSkillsViewService.ctor +');
+        log.trace('PlayersSkillsViewService.ctor +');
     }
 
     public async run(): Promise<void> {
-        log.info('PlayersSkillsViewService.run + this.playersTable:', !!this.playersTable);
-        await this.refreshConfig();
+        log.debug('PlayersSkillsViewService.run + this.playersTable is defined:', !!this.playersTable);
         if (!this.playersTable) {
+            this.listenSettingsChanges();
             this.playersTable = this.extractTableFromHtml();
             this.playersTable && this.tableService?.prepareTable(this.playersTable.htmlTable);
+            await this.loadSettings();
         }
-
-        return this.update(this.playersTable);
+        return this.updatePlayers(this.playersTable);
     }
 
-    private async refreshConfig(): Promise<void> {
-        const options = await this.skillsTableOptionsRepository.getOptions();
-        log.debug('options:', options);
-        this.futureAge = options.futureAge;
-        this.fullTrainings = new FullTrainings(options);
-        this.options = options;
-
-        await this.futurePlayersRankService.init(true);
-
-        log.debug('refreshConfig', this.futureAge, this.fullTrainings);
-    }
-
-    private async update(playersTable?: Table<PlayerWithSkillsSummaries>): Promise<void> {
+    private async updatePlayers(playersTable?: Table<PlayerWithSkillsSummaries>): Promise<void> {
         if (!playersTable) {
             return;
         }
@@ -83,13 +81,85 @@ export class PlayersSkillsViewService {
         for (const row of playersTable.rows) {
             const player = row.data;
             row.data = this.processPlayer(player);
-
+            this.updateRanking(row.data.skillsSummaries);
             row.applyHtmlCells(this.tableService.createSkillsSummaryCells(row.data.skillsSummaries));
         }
+
         for (const header of playersTable.headers) {
             header.applyHtmlCells(this.tableService.createHeaderCells());
         }
     }
+
+    private async updateRankig(playersTable?: Table<PlayerWithSkillsSummaries>): Promise<void> {
+        if (!playersTable) {
+            return;
+        }
+
+        for (const row of playersTable.rows) {
+            this.updateRanking(row.data.skillsSummaries);
+            row.applyHtmlCells(this.tableService.createSkillsSummaryCells(row.data.skillsSummaries));
+        }
+
+        // for (const header of playersTable.headers) {
+        //     header.applyHtmlCells(this.tableService.createHeaderCells());
+        // }
+    }
+
+    // #regions SETTINGS
+    private listenSettingsChanges(): void {
+        if (!this.onSettingsChangedSubs) {
+            this.onSettingsChangedSubs = this.settingsRepository.onChanged.subscribe((changes) =>
+                this.onSettingsChanged(changes),
+            );
+        }
+    }
+
+    private onSettingsChanged(changes: Record<string, SettingsChange>) {
+        for (const key in changes) {
+            switch (key) {
+                case _futurePredicationSettingsKey:
+                    {
+                        this.refreshFuturePredicationSettings(changes[_futurePredicationSettingsKey].newValue);
+                        if (this.playersTable) {
+                            this.updatePlayers(this.playersTable);
+                        }
+                    }
+                    break;
+                case _rankingsSettingsKey:
+                    {
+                        const rankingsSettings = changes[_rankingsSettingsKey].newValue;
+                        this.prepareRankings(rankingsSettings).then(() => this.updateRankig(this.playersTable));
+                    }
+                    break;
+            }
+        }
+    }
+
+    private async loadSettings(): Promise<void> {
+        const futurePredicationSettings = await this.settingsRepository.getSettings<FuturePredicationSettings>(
+            _futurePredicationSettingsKey,
+        );
+        this.refreshFuturePredicationSettings(futurePredicationSettings);
+
+        const rankingsSettings = await this.settingsRepository.getSettings<RankingsSettings>(_rankingsSettingsKey);
+        return this.prepareRankings(rankingsSettings);
+    }
+
+    private async prepareRankings(rankingsSettings: RankingsSettings) {
+        if (!this.rankService) {
+            this.rankService = await this.playersRankServiceFactory.getRanking(rankingsSettings);
+        } else {
+            this.rankService.init(rankingsSettings);
+        }
+    }
+
+    private refreshFuturePredicationSettings(futurePredicationSettings: FuturePredicationSettings): void {
+        log.trace('refreshSettings:', futurePredicationSettings);
+        this.futureAge = futurePredicationSettings.futureAge;
+        this.fullTrainings = new FullTrainings(futurePredicationSettings);
+        this.futurePredicationSettings = futurePredicationSettings;
+    }
+    // #endregion
 
     // #region Przetwarza tabele graczy <Player> z umiejątnościami
     private extractTableFromHtml(): Table<Player> | undefined {
@@ -130,7 +200,37 @@ export class PlayersSkillsViewService {
     }
     // #endregion
 
-    // Dodaje kolumny do tabeli graczy
+    private updateRanking(skillsSummaryCombo?: SkillsSummaryCombo) {
+        if (!skillsSummaryCombo || !this.rankService) return;
+        if (skillsSummaryCombo.current) {
+            this.updateRankingPerPositon(skillsSummaryCombo.current, this.rankService);
+        }
+        if (skillsSummaryCombo.future) {
+            this.updateRankingPerPositon(
+                skillsSummaryCombo.future,
+                this.rankService,
+                this.futurePredicationSettings?.futureAge,
+            );
+        }
+        if (skillsSummaryCombo.futureMax) {
+            this.updateRankingPerPositon(
+                skillsSummaryCombo.futureMax,
+                this.rankService,
+                this.futurePredicationSettings?.futureAge,
+            );
+        }
+    }
+
+    private updateRankingPerPositon(
+        skillsSummary: FutureSkillsSummaryWithBest,
+        rankService: PlayersRankService,
+        futureAge?: number,
+    ) {
+        playerPositionValues.forEach((positionType) => {
+            const summary = skillsSummary[positionType];
+            summary.rank = rankService.getRank(summary.gs, futureAge);
+        });
+    }
 
     // Oblicza dodatkowe dane graczy
     private processPlayer(player: Player): PlayerWithSkillsSummaries {
@@ -145,7 +245,7 @@ export class PlayersSkillsViewService {
                     this.futureAge,
                     this.fullTrainings,
                     player.maxTraining,
-                    this.options,
+                    this.futurePredicationSettings,
                 );
             } else {
                 const potentialDelta = _potentialConfig[player.potential];
@@ -157,7 +257,7 @@ export class PlayersSkillsViewService {
                         this.futureAge,
                         this.fullTrainings,
                         potentialDelta.min,
-                        this.options,
+                        this.futurePredicationSettings,
                     );
 
                     skillsSummaries.futureMax = this.futureSkillsService.countSkillsInFuture(
@@ -166,7 +266,7 @@ export class PlayersSkillsViewService {
                         this.futureAge,
                         this.fullTrainings,
                         potentialDelta.max,
-                        this.options,
+                        this.futurePredicationSettings,
                     );
                 }
             }

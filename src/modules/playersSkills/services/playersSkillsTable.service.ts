@@ -36,7 +36,7 @@ export abstract class PlayersSkillsTableService {
             this.applyStyle(skillsSummary, classStyles);
             return this.createGsCell(
                 this.formatGs(skillsSummary.gs),
-                `Place in team: ${rank}`,
+                `Ranking place: ${rank}`,
                 classStyles.length > 0 ? classStyles : undefined,
             );
         } else {

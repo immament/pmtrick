@@ -14,11 +14,11 @@ export class ContentScriptRegistry {
     applyContent(): void {
         const url = location.href;
         const services = container.resolveAll<ContentScriptService>('ContentScriptService');
-        log.debug('ContentScriptRegistry.applyContent: ', services.length);
+        log.trace('ContentScriptRegistry.applyContent size:', services.length);
 
         for (const service of services) {
             if (service.match(url)) {
-                log.info('ContentScriptRegistry.apply', service.name);
+                log.info('ContentScriptRegistry.apply:', service.name);
                 service.apply();
             }
         }
