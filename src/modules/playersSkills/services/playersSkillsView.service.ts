@@ -18,7 +18,12 @@ import {
     _futurePredicationSettingsKey,
     FuturePredicationSettings,
 } from '@src/common/services/settings/futurePredication.settings';
-import { _rankingsSettingsKey, RankingsSettings } from '@src/common/services/settings/settings';
+import {
+    _rankingsSettingsKey,
+    _transferListSettingsKey,
+    RankingsSettings,
+    TransferListSettings,
+} from '@src/common/services/settings/settings';
 import { SettingsChange, SettingsRepository } from '@src/common/services/settings/settings.repository';
 import { DataRow, Header, Table } from '@src/common/services/table.wrapper';
 
@@ -27,6 +32,7 @@ import { SkillCalculatorService } from '../../../common/services/skillCalculator
 
 import { playersSkillsTableFactory } from './playersSkillsTable.factory';
 import { PlayersSkillsTableService } from './playersSkillsTable.service';
+import { PlayersSkillsViewServiceSettings } from './PlayersSkillsViewServiceSettings';
 
 const _potentialConfig = getPotentialConfig();
 
@@ -48,6 +54,7 @@ export class PlayersSkillsViewService {
     private fullTrainings?: FullTrainings;
     private futureAge?: number;
     private futurePredicationSettings?: FuturePredicationSettings;
+    private transferListSettings?: TransferListSettings;
     private rankService?: PlayersRankService;
 
     private onSettingsChangedSubs?: Subscription;
@@ -70,7 +77,8 @@ export class PlayersSkillsViewService {
             this.playersTable && this.tableService?.prepareTable(this.playersTable.htmlTable);
             await this.loadSettings();
         }
-        return this.updatePlayers(this.playersTable);
+        await this.updatePlayers(this.playersTable);
+        await this.updateColumnsVisibility(this.playersTable);
     }
 
     private async updatePlayers(playersTable?: Table<PlayerWithSkillsSummaries>): Promise<void> {
@@ -81,7 +89,7 @@ export class PlayersSkillsViewService {
         for (const row of playersTable.rows) {
             const player = row.data;
             row.data = this.processPlayer(player);
-            this.updateRanking(row.data.skillsSummaries);
+            this.updatePlayerRanking(row.data.skillsSummaries);
             row.applyHtmlCells(this.tableService.createSkillsSummaryCells(row.data.skillsSummaries));
         }
 
@@ -90,19 +98,33 @@ export class PlayersSkillsViewService {
         }
     }
 
-    private async updateRankig(playersTable?: Table<PlayerWithSkillsSummaries>): Promise<void> {
+    private async updateRanking(playersTable?: Table<PlayerWithSkillsSummaries>): Promise<void> {
         if (!playersTable) {
             return;
         }
 
         for (const row of playersTable.rows) {
-            this.updateRanking(row.data.skillsSummaries);
+            this.updatePlayerRanking(row.data.skillsSummaries);
             row.applyHtmlCells(this.tableService.createSkillsSummaryCells(row.data.skillsSummaries));
         }
+    }
 
-        // for (const header of playersTable.headers) {
-        //     header.applyHtmlCells(this.tableService.createHeaderCells());
-        // }
+    private async updateColumnsVisibility(playersTable?: Table<PlayerWithSkillsSummaries>): Promise<void> {
+        if (!playersTable) {
+            return;
+        }
+
+        log.debug('playersSkillsView.service', 'updateColumnsVisibility', this.transferListSettings?.hiddenColumns);
+
+        if (!this.transferListSettings?.hiddenColumns) return;
+
+        for (const header of playersTable.headers) {
+            this.tableService.hideColumns(this.transferListSettings.hiddenColumns, header.htmlRow);
+        }
+
+        for (const row of playersTable.rows) {
+            this.tableService.hideColumns(this.transferListSettings.hiddenColumns, row.htmlRow);
+        }
     }
 
     // #regions SETTINGS
@@ -128,7 +150,13 @@ export class PlayersSkillsViewService {
                 case _rankingsSettingsKey:
                     {
                         const rankingsSettings = changes[_rankingsSettingsKey].newValue;
-                        this.prepareRankings(rankingsSettings).then(() => this.updateRankig(this.playersTable));
+                        this.prepareRankings(rankingsSettings).then(() => this.updateRanking(this.playersTable));
+                    }
+                    break;
+                case _transferListSettingsKey:
+                    {
+                        this.transferListSettings = changes[_transferListSettingsKey].newValue;
+                        this.updateColumnsVisibility(this.playersTable);
                     }
                     break;
             }
@@ -136,16 +164,21 @@ export class PlayersSkillsViewService {
     }
 
     private async loadSettings(): Promise<void> {
-        const futurePredicationSettings = await this.settingsRepository.getSettings<FuturePredicationSettings>(
+        const settings = await this.settingsRepository.getMultipleSettings<PlayersSkillsViewServiceSettings>([
+            _rankingsSettingsKey,
             _futurePredicationSettingsKey,
-        );
-        this.refreshFuturePredicationSettings(futurePredicationSettings);
+            _transferListSettingsKey,
+        ]);
 
-        const rankingsSettings = await this.settingsRepository.getSettings<RankingsSettings>(_rankingsSettingsKey);
-        return this.prepareRankings(rankingsSettings);
+        log.debug('playersSkillsView.service', 'settings', settings);
+        this.transferListSettings = settings.transferListSettings;
+        this.refreshFuturePredicationSettings(settings.futurePredicationSettings);
+        await this.prepareRankings(settings.rankingsSettings);
+        return;
     }
 
-    private async prepareRankings(rankingsSettings: RankingsSettings) {
+    private async prepareRankings(rankingsSettings?: RankingsSettings) {
+        if (!rankingsSettings) return;
         if (!this.rankService) {
             this.rankService = await this.playersRankServiceFactory.getRanking(rankingsSettings);
         } else {
@@ -153,12 +186,15 @@ export class PlayersSkillsViewService {
         }
     }
 
-    private refreshFuturePredicationSettings(futurePredicationSettings: FuturePredicationSettings): void {
+    private refreshFuturePredicationSettings(futurePredicationSettings?: FuturePredicationSettings): void {
         log.trace('refreshSettings:', futurePredicationSettings);
-        this.futureAge = futurePredicationSettings.futureAge;
-        this.fullTrainings = new FullTrainings(futurePredicationSettings);
-        this.futurePredicationSettings = futurePredicationSettings;
+        if (futurePredicationSettings) {
+            this.futureAge = futurePredicationSettings.futureAge;
+            this.fullTrainings = new FullTrainings(futurePredicationSettings);
+            this.futurePredicationSettings = futurePredicationSettings;
+        }
     }
+
     // #endregion
 
     // #region Przetwarza tabele graczy <Player> z umiejątnościami
@@ -200,7 +236,7 @@ export class PlayersSkillsViewService {
     }
     // #endregion
 
-    private updateRanking(skillsSummaryCombo?: SkillsSummaryCombo) {
+    private updatePlayerRanking(skillsSummaryCombo?: SkillsSummaryCombo) {
         if (!skillsSummaryCombo || !this.rankService) return;
         if (skillsSummaryCombo.current) {
             this.updateRankingPerPositon(skillsSummaryCombo.current, this.rankService);

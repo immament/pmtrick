@@ -6,16 +6,24 @@ import { Subject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { container } from 'tsyringe';
 
+import { Modal } from '@src/common/components/modal';
 import {
     _futurePredicationSettingsKey,
     FuturePredicationSettings,
 } from '@src/common/services/settings/futurePredication.settings';
-import { _rankingsSettingsKey, RankingRange, RankingsSettings } from '@src/common/services/settings/settings';
+import {
+    _rankingsSettingsKey,
+    _transferListSettingsKey,
+    RankingRange,
+    RankingsSettings,
+    TransferListSettings,
+} from '@src/common/services/settings/settings';
 import { SettingsRepository } from '@src/common/services/settings/settings.repository';
 import { pick } from '@src/common/services/utils/utils';
 
-import { Modal } from '../../../../common/components/modal';
+import { PlayersSkillsViewServiceSettings } from '../../services/PlayersSkillsViewServiceSettings';
 
+import { CheckboxItem, CheckboxOptions } from './checkboxOptions.component';
 import { FormGroup } from './formGroup.component';
 import { RankingOptions } from './rankingOptions.control';
 import { numberOptions } from './selectOptions.component';
@@ -33,6 +41,7 @@ type SkillsTableOptionsState = {
     fullSeasonFriendlyMatches?: number;
     rankingsSettings?: RankingsSettings;
 
+    columnsVisibility?: CheckboxItem[];
     isLoaded?: boolean;
 };
 
@@ -47,14 +56,23 @@ const _futurePredicationSettings = [
 type RankingsSettingsKeys = 'current' | 'future';
 
 export default class SkillsTableOptions extends React.Component<SkillsTableOptionsProps, SkillsTableOptionsState> {
-    private selectAgePossibleNumbers = [18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28];
-    private selectAgeOptions = numberOptions(this.selectAgePossibleNumbers);
+    private static selectAgePossibleNumbers = [18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28];
+
+    private selectAgeOptions = numberOptions(SkillsTableOptions.selectAgePossibleNumbers);
 
     private readonly settingsRepository: SettingsRepository;
     private saveFuturePredicationSettings$ = new Subject<Partial<SkillsTableOptionsState>>();
     private saveFuturePredicationSettingsSubs?: Subscription;
     private saveRankingSettings$ = new Subject<Partial<SkillsTableOptionsState>>();
     private saveRankingSettingsSubs?: Subscription;
+
+    private columnsConfig: CheckboxItem[] = [
+        { name: 'country', isChecked: true, label: 'Country' },
+        { name: 'wage', isChecked: true, label: 'Wage' },
+        { name: 'gs', isChecked: true, label: 'GS' },
+        { name: 'gsFutureMin', isChecked: true, label: 'GS future min' },
+        { name: 'gsFutureMax', isChecked: true, label: 'GS future max' },
+    ];
 
     constructor(props: SkillsTableOptionsProps) {
         super(props);
@@ -63,11 +81,13 @@ export default class SkillsTableOptions extends React.Component<SkillsTableOptio
         this.settingsRepository = container.resolve(SettingsRepository);
 
         this.state = {};
+
         this.loadSettings();
 
         this.handleChangeAge = this.handleChangeAge.bind(this);
         this.handleChangeNumber = this.handleChangeNumber.bind(this);
         this.handleChangeRanking = this.handleChangeRanking.bind(this);
+        this.handleColumnsVisibilityChange = this.handleColumnsVisibilityChange.bind(this);
     }
 
     componentDidMount(): void {
@@ -85,21 +105,28 @@ export default class SkillsTableOptions extends React.Component<SkillsTableOptio
     }
 
     private async loadSettings() {
-        await Promise.all([
-            this.settingsRepository
-                .getSettings<FuturePredicationSettings>(_futurePredicationSettingsKey)
-                .then((value) => {
-                    const stateDelta = pick(value, ..._futurePredicationSettings);
-                    log.trace('skillsTableOptions.component', 'get FuturePredicationSettings:', stateDelta);
-                    this.setState(stateDelta);
-                }),
-
-            this.settingsRepository.getSettings<RankingsSettings>(_rankingsSettingsKey).then((value) => {
-                log.debug('skillsTableOptions.component', 'get RankingsSettings:', value);
-                this.setState({ rankingsSettings: value });
-            }),
+        const settings = await this.settingsRepository.getMultipleSettings<PlayersSkillsViewServiceSettings>([
+            _rankingsSettingsKey,
+            _futurePredicationSettingsKey,
+            _transferListSettingsKey,
         ]);
-        this.setState({ isLoaded: true });
+
+        let stateDelta: Partial<SkillsTableOptionsState> = {};
+
+        if (settings.futurePredicationSettings) {
+            stateDelta = { ...stateDelta, ...pick(settings.futurePredicationSettings, ..._futurePredicationSettings) };
+        }
+        if (settings.rankingsSettings) {
+            stateDelta.rankingsSettings = settings.rankingsSettings;
+        }
+        if (settings.transferListSettings) {
+            const hiddenColumns = settings.transferListSettings.hiddenColumns;
+            stateDelta.columnsVisibility = this.columnsConfig.map((cc) => ({
+                ...cc,
+                isChecked: !hiddenColumns.includes(cc.name),
+            }));
+        }
+        this.setState({ ...stateDelta, isLoaded: true });
     }
 
     private async saveFuturePredicationSettings(state: SkillsTableOptionsState): Promise<void> {
@@ -110,7 +137,17 @@ export default class SkillsTableOptions extends React.Component<SkillsTableOptio
 
     private async saveRankingSettings(state: SkillsTableOptionsState): Promise<void> {
         if (!state.rankingsSettings) return;
+        log.debug('skillsTableOptions.component', 'saveRankingSettings', state.rankingsSettings);
         await this.settingsRepository.save(_rankingsSettingsKey, state.rankingsSettings);
+    }
+
+    private async saveColumnsSettings(state: SkillsTableOptionsState): Promise<void> {
+        if (!state.rankingsSettings) return;
+
+        const hiddenColumns = state.columnsVisibility?.filter((col) => !col.isChecked).map((col) => col.name) || [];
+        await this.settingsRepository.save<TransferListSettings>(_transferListSettingsKey, {
+            hiddenColumns,
+        });
     }
 
     // #region EVENTS
@@ -124,37 +161,57 @@ export default class SkillsTableOptions extends React.Component<SkillsTableOptio
 
     private handleChangeNumber(e: React.ChangeEvent<HTMLInputElement>): void {
         const { name, value } = e.target;
-        const stateDelta = {
+        const stateDelta: Partial<SkillsTableOptionsState> = {
             [name]: Number(value),
-        } as SkillsTableOptionsState;
-        this.setState(stateDelta, () => {
+        };
+        this.setState(stateDelta as SkillsTableOptionsState, () => {
             this.saveFuturePredicationSettings$.next(this.state);
         });
     }
 
     private handleChangeRanking: (event: React.ChangeEvent<HTMLInputElement>) => void = (e) => {
         const { name, value } = e.target;
+        log.debug('skillsTableOptions.component', 'handleChangeRanking', name, value);
 
         const [, type, field] = name.split('_');
 
-        this.setState(
-            (state) => {
-                const rankingType = state.rankingsSettings && state.rankingsSettings[type as RankingsSettingsKeys];
-                if (rankingType) {
-                    rankingType[field as keyof RankingRange] = Number(value);
-                }
-                return state;
-            },
-            () => {
-                this.saveRankingSettings$.next(this.state);
-            },
+        const rankingsSettings = this.updateRankingSettings(
+            type as RankingsSettingsKeys,
+            field as keyof RankingRange,
+            value,
         );
+
+        this.setState({ rankingsSettings }, () => {
+            this.saveRankingSettings$.next(this.state);
+        });
+    };
+
+    private handleColumnsVisibilityChange: (event: React.ChangeEvent<HTMLInputElement>) => void = (event) => {
+        const { name, checked } = event.target;
+        const columns = this.state.columnsVisibility?.map((column) => {
+            if (column.name == name) {
+                column.isChecked = checked;
+            }
+            return column;
+        });
+
+        this.setState({ columnsVisibility: columns }, () => {
+            this.saveColumnsSettings(this.state);
+        });
     };
 
     private onClose = (e: React.MouseEvent<HTMLButtonElement>): void => {
         this.props.onClose && this.props.onClose(e);
         log.trace('SkillsTableOptions.onClose');
     };
+
+    private updateRankingSettings(type: RankingsSettingsKeys, field: keyof RankingRange, value: string) {
+        const rankingRange = (this.state.rankingsSettings && this.state.rankingsSettings[type]) || ({} as RankingRange);
+
+        rankingRange[field] = Number(value);
+        const rankingsSettings = { ...this.state.rankingsSettings, [type]: rankingRange };
+        return rankingsSettings;
+    }
 
     // #endregion
 
@@ -244,7 +301,7 @@ export default class SkillsTableOptions extends React.Component<SkillsTableOptio
                         </div>
 
                         <div className="panel panel-default">
-                            <div className="panel-heading">Rankins</div>
+                            <div className="panel-heading">Rankings</div>
 
                             <div className="panel-body">
                                 {this.state.rankingsSettings?.current && (
@@ -263,6 +320,18 @@ export default class SkillsTableOptions extends React.Component<SkillsTableOptio
                                 )}
                             </div>
                         </div>
+                        {}
+                        {this.state.columnsVisibility && (
+                            <div className="panel panel-default pmt-checkbox-options">
+                                <div className="panel-heading">Visible columns</div>
+                                <div className="panel-body">
+                                    <CheckboxOptions
+                                        columns={this.state.columnsVisibility}
+                                        onCheckedChange={this.handleColumnsVisibilityChange}
+                                    ></CheckboxOptions>
+                                </div>
+                            </div>
+                        )}
                     </form>
                 )}
             </Modal>

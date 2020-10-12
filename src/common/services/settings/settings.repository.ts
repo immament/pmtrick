@@ -19,6 +19,15 @@ export class SettingsRepository {
         this.listen();
     }
 
+    async getMultipleSettings<T extends Record<string, BaseSettings | undefined>>(keys: (keyof T)[]): Promise<T> {
+        const keyDictionary: Record<string, BaseSettings | undefined> = {};
+        for (const key of keys) {
+            const defaultValue = settingsConfig[key as string];
+            keyDictionary[key as string] = defaultValue;
+        }
+        return (browser.storage.sync.get(keyDictionary) as unknown) as T;
+    }
+
     async getSettings<T extends BaseSettings>(key: string): Promise<T> {
         const defaultValue = settingsConfig[key];
         const settings = await this.get<T>(key, defaultValue);

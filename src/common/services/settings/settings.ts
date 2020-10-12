@@ -39,7 +39,7 @@ const _rankingsSettingsDefault: RankingsSettings = {
     future: { min: 60, max: 90 },
     useRanking: 'PlayersRangeRankService',
 };
-export const _rankingsSettingsKey = 'RankingsSettings';
+export const _rankingsSettingsKey = 'rankingsSettings';
 
 export interface RankingRange {
     min: number;
@@ -55,6 +55,12 @@ export class RankingsSettings extends BaseSettings {
 
 // Transfer list settings
 
+export const _transferListSettingsKey = 'transferListSettings';
+
+const _transferListSettingsDefault: TransferListSettings = {
+    hiddenColumns: [],
+};
+@settings(_transferListSettingsKey, _transferListSettingsDefault)
 export class TransferListSettings extends BaseSettings {
-    showColumns: string[] = [];
+    hiddenColumns: string[] = [];
 }

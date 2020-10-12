@@ -54,7 +54,7 @@ export class Row {
 
     private extraCells: Cell[] = [];
 
-    constructor(private htmlRow: HTMLTableRowElement) {}
+    constructor(public readonly htmlRow: HTMLTableRowElement) {}
 
     applyCells(cells: Cell[]): void {
         this.removeExtraHtmlCells();

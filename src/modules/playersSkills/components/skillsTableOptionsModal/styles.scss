@@ -1,11 +1,23 @@
 .pmt-skills-table-options {
     .panel-body {
-        padding: 15px 15px 0 15px;
+        .form-group:last-of-type {
+            margin-bottom: 0;
+        }
     }
     .panel-heading {
         padding: 5px 15px;
     }
     .panel {
         margin-bottom: 10px;
+    }
+}
+
+.pmt-checkbox-options {
+    .panel-body {
+        display: flex;
+
+        .pmt-checkbox-option {
+            padding: 0 8px 0 8px;
+        }
     }
 }
