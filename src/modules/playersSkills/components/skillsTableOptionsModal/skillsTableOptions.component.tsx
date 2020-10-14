@@ -84,7 +84,7 @@ export default class SkillsTableOptions extends React.Component<SkillsTableOptio
     constructor(props: SkillsTableOptionsProps) {
         super(props);
 
-        log.trace('SkillsTableOptions.ctor +');
+        log.info('SkillsTableOptions.ctor +', props);
         this.settingsRepository = container.resolve(SettingsRepository);
         this.checkBoxItems = container.resolve(CheckBoxItems);
 
@@ -94,6 +94,7 @@ export default class SkillsTableOptions extends React.Component<SkillsTableOptio
         this.handleChangeNumber = this.handleChangeNumber.bind(this);
         this.handleChangeRanking = this.handleChangeRanking.bind(this);
         this.handleColumnsVisibilityChange = this.handleColumnsVisibilityChange.bind(this);
+        this.handleModalClose = this.handleModalClose.bind(this);
     }
 
     componentDidMount(): void {
@@ -212,7 +213,7 @@ export default class SkillsTableOptions extends React.Component<SkillsTableOptio
         });
     }
 
-    private onClose(e: React.MouseEvent<HTMLButtonElement>): void {
+    private handleModalClose(e: React.MouseEvent<HTMLButtonElement>): void {
         this.props.onClose && this.props.onClose(e);
     }
 
@@ -229,7 +230,12 @@ export default class SkillsTableOptions extends React.Component<SkillsTableOptio
     render(): React.ReactNode {
         log.trace('render SkillsTableOptions');
         return (
-            <Modal show={this.props.show} title="Options" className="pmt-skills-table-options" onClose={this.onClose}>
+            <Modal
+                show={this.props.show}
+                title="Options"
+                className="pmt-skills-table-options"
+                onClose={this.handleModalClose}
+            >
                 {this.state.isLoaded && (
                     <form className="form-horizontal">
                         <div className="panel panel-default">

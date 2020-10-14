@@ -35,8 +35,8 @@ export class GsFormulaSettings extends BaseSettings {
 // Rankings future min-max
 
 const _rankingsSettingsDefault: RankingsSettings = {
-    current: { min: 50, max: 80 },
-    future: { min: 60, max: 90 },
+    current: { min: 80, max: 85 },
+    future: { min: 80, max: 85 },
     useRanking: 'PlayersRangeRankService',
 };
 export const _rankingsSettingsKey = 'rankingsSettings';
