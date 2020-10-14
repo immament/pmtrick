@@ -54,6 +54,7 @@
         "babel-jest": "^26.3.0",
         "babel-loader": "^8.0.6",
         "babel-plugin-transform-typescript-metadata": "^0.3.0",
+        "chromatic": "^5.2.0",
         "copy-webpack-plugin": "^6.1.1",
         "css-loader": "^4.3.0",
         "eslint": "^7.9.0",

@@ -17,7 +17,6 @@
         "experimentalDecorators": true,
         "allowSyntheticDefaultImports": true,
         "emitDecoratorMetadata": true,
-        "typeRoots": ["node_modules/@types"],
-        "allowJs": true
+        "typeRoots": ["node_modules/@types"]
     }
 }
