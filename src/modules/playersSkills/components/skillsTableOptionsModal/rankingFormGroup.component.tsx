@@ -4,10 +4,10 @@ interface RankingFormGroupProps {
     id: string;
     value: number;
     label: string;
-    handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export function RankingFormGroup({ id, handleChange, value, label }: RankingFormGroupProps): JSX.Element {
+export function RankingFormGroup({ id, onChange, value, label }: RankingFormGroupProps): JSX.Element {
     return (
         <>
             <label htmlFor={id} className="col-sm-1 control-label">
@@ -19,7 +19,7 @@ export function RankingFormGroup({ id, handleChange, value, label }: RankingForm
                     id={id}
                     name={id}
                     value={value}
-                    onChange={handleChange}
+                    onChange={onChange}
                     className="form-control"
                     min="1"
                     max="100"

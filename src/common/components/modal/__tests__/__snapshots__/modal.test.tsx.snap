@@ -6,7 +6,7 @@ exports[`Modal component renders 1`] = `
   id="modal"
 >
   <div
-    className="modal-dialog "
+    className="modal-dialog  "
     role="document"
   >
     <div

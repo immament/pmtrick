@@ -41,3 +41,26 @@ export function usePrevious<T>(value?: T): T | undefined {
 //         [Key in keyof Base]: Base[Key] extends Condition ? Key : never;
 //     }[keyof Base]
 // >;
+
+export type CancelablePromise<T> = {
+    promise: Promise<T>;
+    cancel(): void;
+};
+
+export const makeCancelable = <T>(promise: Promise<T>): CancelablePromise<T> => {
+    let hasCanceled_ = false;
+
+    const wrappedPromise = new Promise<T>((resolve, reject) => {
+        promise.then(
+            (val) => (hasCanceled_ ? reject({ isCanceled: true }) : resolve(val)),
+            (error) => (hasCanceled_ ? reject({ isCanceled: true }) : reject(error)),
+        );
+    });
+
+    return {
+        promise: wrappedPromise,
+        cancel() {
+            hasCanceled_ = true;
+        },
+    };
+};

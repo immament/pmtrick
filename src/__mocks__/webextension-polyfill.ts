@@ -10,6 +10,26 @@
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface SendMessageOptionsType {}
 
+const storage = {
+    get(
+        _keys?:
+            | null
+            | string
+            | string[]
+            | {
+                  [s: string]: any;
+              },
+    ): Promise<{
+        [s: string]: any;
+    }> {
+        return Promise.resolve({});
+    },
+
+    set(_items: any): Promise<void> {
+        return Promise.resolve();
+    },
+};
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const browser: any = {
     tabs: {
@@ -25,23 +45,11 @@ export const browser: any = {
         },
     },
     storage: {
-        local: {
-            get(
-                _keys?:
-                    | null
-                    | string
-                    | string[]
-                    | {
-                          [s: string]: any;
-                      },
-            ): Promise<{
-                [s: string]: any;
-            }> {
-                return Promise.resolve({});
-            },
-
-            set(_items: any): Promise<void> {
-                return Promise.resolve();
+        local: storage,
+        sync: storage,
+        onChanged: {
+            addListener(_cb: (...args: any[]) => any): void {
+                return;
             },
         },
     },

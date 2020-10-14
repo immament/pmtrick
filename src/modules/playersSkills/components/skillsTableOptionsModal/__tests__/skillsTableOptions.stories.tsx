@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import '../../../../../contentScript/services/contentScript.bootstrap';
+import '@src/contentScript/services/contentScript.bootstrap';
 
 import React from 'react';
 
@@ -10,13 +10,13 @@ import SkillsTableOptions, { SkillsTableOptionsProps } from '../skillsTableOptio
 // // // //
 
 export default {
-    title: 'Content/SkillsTableOptions',
+    title: 'SkillsTable/SkillsTableOptions',
     component: SkillsTableOptions,
 } as Meta;
 
 const Template: Story<SkillsTableOptionsProps> = (args) => <SkillsTableOptions {...args} />;
 
-export const First = Template.bind({});
-First.args = {
+export const Primary = Template.bind({});
+Primary.args = {
     show: true,
 } as SkillsTableOptionsProps;

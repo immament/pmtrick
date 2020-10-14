@@ -13,8 +13,8 @@ export default {
 
 const Template: Story<ModalProps> = (args) => <Modal {...args} />;
 
-export const First = Template.bind({});
-First.args = {
+export const Primary = Template.bind({});
+Primary.args = {
     show: true,
     title: 'Sample title',
     children: 'Sample content',

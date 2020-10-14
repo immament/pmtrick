@@ -7,10 +7,10 @@ import { SkillsTablesOptionsButton } from '../skillsTablesOptionsButton.componen
 // // // //
 
 export default {
-    title: 'Content/Content',
+    title: 'SkillsTable/SkillsTablesOptionsButton',
     component: SkillsTablesOptionsButton,
 } as Meta;
 
 const Template: Story = (args) => <SkillsTablesOptionsButton {...args} />;
 
-export const First = Template.bind({});
+export const Primary = Template.bind({});

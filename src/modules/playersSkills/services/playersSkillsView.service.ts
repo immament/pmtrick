@@ -32,7 +32,7 @@ import { SkillCalculatorService } from '../../../common/services/skillCalculator
 
 import { playersSkillsTableFactory } from './playersSkillsTable.factory';
 import { PlayersSkillsTableService } from './playersSkillsTable.service';
-import { PlayersSkillsViewServiceSettings } from './PlayersSkillsViewServiceSettings';
+import { PlayersSkillsViewServiceSettings } from './playersSkillsViewServiceSettings';
 
 const _potentialConfig = getPotentialConfig();
 
