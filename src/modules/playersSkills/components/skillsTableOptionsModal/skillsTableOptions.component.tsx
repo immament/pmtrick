@@ -243,82 +243,87 @@ export default class SkillsTableOptions extends React.Component<SkillsTableOptio
             >
                 {this.state.isLoaded && (
                     <form className="form-horizontal">
-                        <div className="panel panel-default">
-                            <div className="panel-heading">Predict skills</div>
-
+                        <div className="panel panel-success">
+                            <div className="panel-heading">Future GS</div>
                             <div className="panel-body">
-                                <FormGroup label="Age" name="toAge">
-                                    <select
-                                        id="toAge"
-                                        name="toAge"
-                                        value={this.state.futureAge}
-                                        className="form-control"
-                                        onChange={this.handleChangeAge}
-                                    >
-                                        {this.selectAgeOptions}
-                                    </select>
-                                </FormGroup>
-                            </div>
-                        </div>
+                                <div className="panel panel-default">
+                                    <div className="panel-heading">Predict gs at age</div>
 
-                        <div className="panel panel-default">
-                            <div className="panel-heading">Matches current season</div>
+                                    <div className="panel-body">
+                                        <FormGroup label="Age" name="toAge">
+                                            <select
+                                                id="toAge"
+                                                name="toAge"
+                                                value={this.state.futureAge}
+                                                className="form-control"
+                                                onChange={this.handleChangeAge}
+                                            >
+                                                {this.selectAgeOptions}
+                                            </select>
+                                        </FormGroup>
+                                    </div>
+                                </div>
 
-                            <div className="panel-body">
-                                <FormGroup label="League" name="currentSeasonLeagueMatches">
-                                    <input
-                                        type="number"
-                                        id="currentSeasonLeagueMatches"
-                                        name="currentSeasonLeagueMatches"
-                                        value={this.state.currentSeasonLeagueMatches}
-                                        onChange={this.handleChangeNumber}
-                                        className="form-control"
-                                        min="0"
-                                        max="18"
-                                    ></input>
-                                </FormGroup>
-                                <FormGroup label="Friendly / cup" name="currentSeasonFriendlyMatches">
-                                    <input
-                                        type="number"
-                                        id="currentSeasonFriendlyMatches"
-                                        name="currentSeasonFriendlyMatches"
-                                        value={this.state.currentSeasonFriendlyMatches}
-                                        onChange={this.handleChangeNumber}
-                                        className="form-control"
-                                        min="0"
-                                        max="12"
-                                    ></input>
-                                </FormGroup>
-                            </div>
-                        </div>
+                                <div className="panel panel-default">
+                                    <div className="panel-heading">Matches current season</div>
 
-                        <div className="panel panel-default">
-                            <div className="panel-heading">Full season matches</div>
-                            <div className="panel-body">
-                                <FormGroup label="League" name="fullSeasonLeagueMatches">
-                                    <input
-                                        type="number"
-                                        id="fullSeasonLeagueMatches"
-                                        name="fullSeasonLeagueMatches"
-                                        value={this.state.fullSeasonLeagueMatches}
-                                        onChange={this.handleChangeNumber}
-                                        className="form-control"
-                                        min="0"
-                                        max="18"
-                                    />
-                                </FormGroup>
-                                <FormGroup label="Friendly / cup" name="fullSeasonFriendlyMatches">
-                                    <input
-                                        type="number"
-                                        id="fullSeasonFriendlyMatches"
-                                        name="fullSeasonFriendlyMatches"
-                                        value={this.state.fullSeasonFriendlyMatches}
-                                        onChange={this.handleChangeNumber}
-                                        className="form-control"
-                                        min="0"
-                                        max="12"
-                                    ></input>
-                                </FormGroup>
+                                    <div className="panel-body">
+                                        <FormGroup label="League" name="currentSeasonLeagueMatches">
+                                            <input
+                                                type="number"
+                                                id="currentSeasonLeagueMatches"
+                                                name="currentSeasonLeagueMatches"
+                                                value={this.state.currentSeasonLeagueMatches}
+                                                onChange={this.handleChangeNumber}
+                                                className="form-control"
+                                                min="0"
+                                                max="18"
+                                            ></input>
+                                        </FormGroup>
+                                        <FormGroup label="Friendly / cup" name="currentSeasonFriendlyMatches">
+                                            <input
+                                                type="number"
+                                                id="currentSeasonFriendlyMatches"
+                                                name="currentSeasonFriendlyMatches"
+                                                value={this.state.currentSeasonFriendlyMatches}
+                                                onChange={this.handleChangeNumber}
+                                                className="form-control"
+                                                min="0"
+                                                max="12"
+                                            ></input>
+                                        </FormGroup>
+                                    </div>
+                                </div>
+
+                                <div className="panel panel-default">
+                                    <div className="panel-heading">Full season matches</div>
+                                    <div className="panel-body">
+                                        <FormGroup label="League" name="fullSeasonLeagueMatches">
+                                            <input
+                                                type="number"
+                                                id="fullSeasonLeagueMatches"
+                                                name="fullSeasonLeagueMatches"
+                                                value={this.state.fullSeasonLeagueMatches}
+                                                onChange={this.handleChangeNumber}
+                                                className="form-control"
+                                                min="0"
+                                                max="18"
+                                            />
+                                        </FormGroup>
+                                        <FormGroup label="Friendly / cup" name="fullSeasonFriendlyMatches">
+                                            <input
+                                                type="number"
+                                                id="fullSeasonFriendlyMatches"
+                                                name="fullSeasonFriendlyMatches"
+                                                value={this.state.fullSeasonFriendlyMatches}
+                                                onChange={this.handleChangeNumber}
+                                                className="form-control"
+                                                min="0"
+                                                max="12"
+                                            ></input>
+                                        </FormGroup>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

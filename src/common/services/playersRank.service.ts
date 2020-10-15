@@ -54,16 +54,17 @@ export class PlayersRangeRankService implements PlayersRankService {
             return;
         }
 
-        const delta = (range.max - range.min) / this._rankingSize;
+        const delta = (range.max - range.min) / (this._rankingSize - 1);
         const rankning: number[] = [];
-        for (let value = range.max, i = 0; i <= this._rankingSize; value -= delta, i++) {
+        for (let value = range.max, i = 0; i < this._rankingSize; value -= delta, i++) {
             rankning[i] = value;
         }
+        rankning[this._rankingSize - 1] = range.min;
         return rankning;
     }
 
     private getRangeRank(ranking: number[], value: number) {
-        return ranking.findIndex((v) => v < value) + 1;
+        return ranking.findIndex((v) => v <= value) + 1;
     }
 
     getRank(value: number, toAge?: number): number | undefined {

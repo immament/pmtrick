@@ -1,5 +1,3 @@
-import 'reflect-metadata';
-
 import { getMatchesToSeasonEnd, SeasonMatches } from '../getMatchesToSeasonEnd';
 
 describe('getMatchesToSeasonEnd', () => {
