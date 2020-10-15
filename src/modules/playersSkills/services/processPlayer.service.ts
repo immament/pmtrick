@@ -9,6 +9,8 @@ import {
     PlayerWithSkillsSummaries,
     SkillsSummaryCombo,
 } from '@src/common/model/player.model';
+import { extractDate } from '@src/common/services/extractors/dateExtractor';
+import { getMatchesToSeasonEnd, SeasonMatches } from '@src/common/services/getMatchesToSeasonEnd';
 import { PlayersRankService, PlayersRankServiceFactory } from '@src/common/services/playersRank.service';
 import { FuturePredicationSettings } from '@src/common/services/settings/futurePredication.settings';
 import { RankingsSettings } from '@src/common/services/settings/settings';
@@ -25,17 +27,28 @@ export class ProcessPlayerService {
     private futurePredicationSettings?: FuturePredicationSettings;
 
     private rankService?: PlayersRankService;
+    private matchesToSeasonEnd: SeasonMatches = { league: 18, other: 12 };
 
     constructor(
         private readonly skillCaluclatorService: SkillCalculatorService,
         private readonly futureSkillsService: FutureSkillsService,
         private readonly playersRankServiceFactory: PlayersRankServiceFactory,
-    ) {}
+    ) {
+        this.calculateMatchesToSeasonEnd();
+    }
 
     refreshFuturePredicationSettings(futurePredicationSettings?: FuturePredicationSettings): void {
         log.trace('refreshSettings:', futurePredicationSettings);
         if (futurePredicationSettings) {
             this.futureAge = futurePredicationSettings.futureAge;
+            futurePredicationSettings.currentSeasonFriendlyMatches = Math.min(
+                this.matchesToSeasonEnd.other,
+                futurePredicationSettings.currentSeasonFriendlyMatches,
+            );
+            futurePredicationSettings.currentSeasonLeagueMatches = Math.min(
+                this.matchesToSeasonEnd.league,
+                futurePredicationSettings.currentSeasonLeagueMatches,
+            );
             this.fullTrainings = new FullTrainings(futurePredicationSettings);
             this.futurePredicationSettings = futurePredicationSettings;
         }
@@ -122,5 +135,12 @@ export class ProcessPlayerService {
             }
         }
         return { ...player, skillsSummaries };
+    }
+
+    private calculateMatchesToSeasonEnd(): void {
+        const pmDate = extractDate(document.body);
+        if (pmDate) {
+            this.matchesToSeasonEnd = getMatchesToSeasonEnd(50 || pmDate.day);
+        }
     }
 }

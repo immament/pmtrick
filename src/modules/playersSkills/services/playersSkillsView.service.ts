@@ -51,12 +51,13 @@ export class PlayersSkillsViewService {
 
     public async run(): Promise<void> {
         if (!this.playersTable) {
-            this.listenSettingsChanges();
+            await this.loadSettings();
             this.playersTable = this.extractTableFromHtml();
             if (this.playersTable) {
                 this.tableService?.prepareTable(this.playersTable.htmlTable);
+                this.addColumnHeaders(this.playersTable);
             }
-            await this.loadSettings();
+            this.listenSettingsChanges();
         }
         await this.updatePlayers(this.playersTable);
     }
@@ -73,10 +74,13 @@ export class PlayersSkillsViewService {
             row.applyHtmlCells(this.tableService.createSkillsSummaryCells(row.data.skillsSummaries));
         }
 
+        await this.updateColumnsVisibility(this.playersTable);
+    }
+
+    private addColumnHeaders(playersTable: Table<PlayerWithSkillsSummaries>) {
         for (const header of playersTable.headers) {
             header.applyHtmlCells(this.tableService.createHeaderCells());
         }
-        await this.updateColumnsVisibility(this.playersTable);
     }
 
     private async updateRanking(playersTable?: Table<PlayerWithSkillsSummaries>): Promise<void> {
@@ -177,14 +181,14 @@ export class PlayersSkillsViewService {
             return;
         }
 
-        return this.createTable(htmlPlayersTable, mapPlayer);
+        return this.createTableInstance(htmlPlayersTable, mapPlayer);
     }
 
     private isHeaderRow(_htmlRow: HTMLTableRowElement, index: string): boolean {
         return index === '0';
     }
 
-    private createTable(
+    private createTableInstance(
         htmlPlayersTable: HTMLTableElement,
         playerMapper: HtmlElementExtractor<HTMLTableRowElement, Player>,
     ): Table<Player> {
