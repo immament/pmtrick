@@ -8,7 +8,7 @@ export type FormGroupProps = {
 export class FormGroup extends React.Component<FormGroupProps> {
     render(): React.ReactNode {
         return (
-            <div className="form-group">
+            <div className="form-group form-group-sm">
                 <label htmlFor={this.props.name} className="col-sm-4 control-label">
                     {this.props.label}
                 </label>

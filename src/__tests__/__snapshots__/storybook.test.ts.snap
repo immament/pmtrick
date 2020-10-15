@@ -1,0 +1,3801 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Common/CheckboxOptions Primary 1`] = `
+<div
+  className="pmt-checkbox-option"
+>
+  <label
+    className="checkbox-inline"
+  >
+    <input
+      checked={false}
+      name="wage"
+      onChange={[Function]}
+      type="checkbox"
+    />
+    Wage
+  </label>
+  <label
+    className="checkbox-inline"
+  >
+    <input
+      checked={true}
+      name="gs"
+      onChange={[Function]}
+      type="checkbox"
+    />
+    GS
+  </label>
+</div>
+`;
+
+exports[`Storyshots Common/Modal Primary 1`] = `
+<div
+  className="pmt-modal modal"
+  id="modal"
+>
+  <div
+    className="modal-dialog  "
+    role="document"
+  >
+    <div
+      className="modal-content"
+    >
+      <div
+        className="modal-header"
+      >
+        <button
+          aria-label="Close"
+          className="close"
+          data-dismiss="modal"
+          onClick={[Function]}
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+          >
+            ×
+          </span>
+        </button>
+        <h4
+          className="modal-title"
+        >
+          Sample title
+        </h4>
+      </div>
+      <div
+        className="modal-body"
+      >
+        Sample content
+      </div>
+      <div
+        className="modal-footer"
+      >
+        <button
+          className="btn btn-default"
+          data-dismiss="modal"
+          onClick={[Function]}
+          type="button"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots SkillsTable/Ranking Options Primary 1`] = `
+<div
+  className="form-group form-group-sm"
+>
+  <label
+    className="col-sm-4 control-label"
+  >
+    Current ranking
+  </label>
+  <label
+    className="col-sm-1 control-label"
+    htmlFor="ranking_Current ranking_min"
+  >
+    Min
+  </label>
+  <div
+    className="col-sm-2"
+  >
+    <input
+      className="form-control"
+      id="ranking_Current ranking_min"
+      max="100"
+      min="1"
+      name="ranking_Current ranking_min"
+      onChange={[Function]}
+      type="number"
+      value={50}
+    />
+  </div>
+  <label
+    className="col-sm-1 control-label"
+    htmlFor="ranking_Current ranking_max"
+  >
+    Max
+  </label>
+  <div
+    className="col-sm-2"
+  >
+    <input
+      className="form-control"
+      id="ranking_Current ranking_max"
+      max="100"
+      min="1"
+      name="ranking_Current ranking_max"
+      onChange={[Function]}
+      type="number"
+      value={90}
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots SkillsTable/SkillsTableOptions Primary 1`] = `
+<div
+  className="pmt-modal modal"
+  id="modal"
+>
+  <div
+    className="modal-dialog  pmt-skills-table-options"
+    role="document"
+  >
+    <div
+      className="modal-content"
+    >
+      <div
+        className="modal-header"
+      >
+        <button
+          aria-label="Close"
+          className="close"
+          data-dismiss="modal"
+          onClick={[Function]}
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+          >
+            ×
+          </span>
+        </button>
+        <h4
+          className="modal-title"
+        >
+          Options
+        </h4>
+      </div>
+      <div
+        className="modal-body"
+      />
+      <div
+        className="modal-footer"
+      >
+        <button
+          className="btn btn-default"
+          data-dismiss="modal"
+          onClick={[Function]}
+          type="button"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots SkillsTable/SkillsTablesOptionsButton Primary 1`] = `
+<button
+  className="btn btn-default btn-success btn-xs"
+  onClick={[Function]}
+>
+  Options
+</button>
+`;
+
+exports[`Storyshots Tactic/Advance Tactic In One Row 1`] = `
+<div
+  className="pmt-root pmt-tactic-summary"
+>
+  <div
+    className="pmt-ats container-fluid"
+  >
+    <div
+      className="row pmt-ats-row  in-one-row"
+    >
+      <div
+        className="col-sm-3 pmt-at-name"
+      >
+        <span>
+          Offside Trap
+        </span>
+      </div>
+      <div
+        className="col-xs-2 pmt-at-condition"
+      >
+        Positioning (D)
+      </div>
+      <div
+        className="col-xs-1 text-center pmt-at-value"
+      >
+         
+        <span>
+          15.21
+        </span>
+      </div>
+      <div
+        className="col-xs-2 pmt-at-condition"
+      >
+        Speed (D)
+      </div>
+      <div
+        className="col-xs-1 text-center pmt-at-value"
+      >
+         
+        <span>
+          8.00
+        </span>
+      </div>
+      <div
+        className="col-xs-2 pmt-at-condition"
+      >
+         
+      </div>
+      <div
+        className="col-xs-1 text-center pmt-at-value"
+      >
+         
+        <span />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Tactic/Advance Tactic In Two Rows 1`] = `
+<div
+  className="pmt-root pmt-tactic-summary"
+>
+  <div
+    className="pmt-ats container-fluid"
+  >
+    <div
+      className="row pmt-ats-row  in-two-rows"
+    >
+      <div
+        className="col-sm-3 pmt-at-name"
+      >
+        <span>
+          Pressing - High
+        </span>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Passing (All)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            5.11
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Speed (All)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            8.00
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+           
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Tactic/Advance Tactic Opponent In One Row 1`] = `
+<div
+  className="pmt-root pmt-tactic-summary"
+>
+  <div
+    className="pmt-ats container-fluid"
+  >
+    <div
+      className="row pmt-ats-row opponent in-one-row"
+    >
+      <div
+        className="col-sm-3 pmt-at-name"
+      >
+        <span>
+          Pressing - Low
+        </span>
+      </div>
+      <div
+        className="col-xs-2 pmt-at-condition"
+      >
+        Tackling (All)
+      </div>
+      <div
+        className="col-xs-1 text-center pmt-at-value"
+      >
+         
+        <span>
+          9.10
+        </span>
+      </div>
+      <div
+        className="col-xs-2 pmt-at-condition"
+      >
+        Speed (All) lower best
+      </div>
+      <div
+        className="col-xs-1 text-center pmt-at-value"
+      >
+         
+        <span>
+          9.99
+        </span>
+      </div>
+      <div
+        className="col-xs-2 pmt-at-condition"
+      >
+         
+      </div>
+      <div
+        className="col-xs-1 text-center pmt-at-value"
+      >
+         
+        <span />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Tactic/Advance Tactic Opponent In Two Rows 1`] = `
+<div
+  className="pmt-root pmt-tactic-summary"
+>
+  <div
+    className="pmt-ats container-fluid"
+  >
+    <div
+      className="row pmt-ats-row opponent in-two-rows"
+    >
+      <div
+        className="col-sm-3 pmt-at-name"
+      >
+        <span>
+          Marking - Zonal
+        </span>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Tackling (D + M)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            15.10
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Speed (D + M)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            8.20
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          AT value
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            12.40
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Tactic/Advance Tactics With Previous Data 1`] = `
+<div
+  className="pmt-root pmt-tactic-summary"
+>
+  <div
+    className="pmt-ats container-fluid"
+  >
+    <div
+      className="row panel panel-default pmt-ats-options"
+    >
+      <div
+        className="panel-body"
+      >
+        <div
+          className="pmt-ats-option"
+        >
+          <label
+            className="checkbox-inline"
+          >
+            <input
+              checked={true}
+              name="ats"
+              onChange={[Function]}
+              type="checkbox"
+            />
+            Ats
+          </label>
+          <label
+            className="checkbox-inline"
+          >
+            <input
+              checked={false}
+              name="vsAts"
+              onChange={[Function]}
+              type="checkbox"
+            />
+            Opponent Ats
+          </label>
+        </div>
+        <div
+          className="pmt-ats-row-view-option"
+        >
+          <label
+            className="radio-inline"
+          >
+            <input
+              checked={true}
+              onChange={[Function]}
+              type="radio"
+            />
+            In two rows
+          </label>
+          <label
+            className="radio-inline"
+          >
+            <input
+              checked={false}
+              onChange={[Function]}
+              type="radio"
+            />
+            In one row
+          </label>
+        </div>
+      </div>
+    </div>
+    <div
+      className="row pmt-ats-row  in-two-rows"
+    >
+      <div
+        className="col-sm-3 pmt-at-name"
+      >
+        <span>
+          Offside Trap
+        </span>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Positioning (D)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            15.00
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Speed (D)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            10.00
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+           
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span />
+        </div>
+      </div>
+    </div>
+    <div
+      className="row pmt-ats-row  in-two-rows"
+    >
+      <div
+        className="col-sm-3 pmt-at-name"
+      >
+        <span>
+          Pressing - High
+        </span>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Passing (All)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            10.64
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Speed (All)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            12.73
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+           
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span />
+        </div>
+      </div>
+    </div>
+    <div
+      className="row pmt-ats-row  in-two-rows"
+    >
+      <div
+        className="col-sm-3 pmt-at-name"
+      >
+        <span>
+          Pressing - Low
+        </span>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Tackling (All)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            6.36
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Speed (All) lower best
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            12.73
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+           
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span />
+        </div>
+      </div>
+    </div>
+    <div
+      className="row pmt-ats-row  in-two-rows"
+    >
+      <div
+        className="col-sm-3 pmt-at-name"
+      >
+        <span>
+          Counter attack
+        </span>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Passing (All)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            10.64
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Speed (All)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            12.73
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+           
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span />
+        </div>
+      </div>
+    </div>
+    <div
+      className="row pmt-ats-row  in-two-rows"
+    >
+      <div
+        className="col-sm-3 pmt-at-name"
+      >
+        <span>
+          High Balls
+        </span>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Heading (All)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            6.36
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Strength (All)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            8.64
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+           
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span />
+        </div>
+      </div>
+    </div>
+    <div
+      className="row pmt-ats-row  in-two-rows"
+    >
+      <div
+        className="col-sm-3 pmt-at-name"
+      >
+        <span>
+          Marking - Zonal
+        </span>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Tackling (D + M)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            8.67
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Speed (D + M)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            14.17
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          AT value
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            11.42
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="row pmt-ats-row  in-two-rows"
+    >
+      <div
+        className="col-sm-3 pmt-at-name"
+      >
+        <span>
+          Marking - Man to Man
+        </span>
+        <span
+          aria-hidden="true"
+          className="glyphicon glyphicon-ok float-right"
+          title="At is active"
+        />
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Tackling (D + M)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            8.67
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Strength (D + M)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            7.67
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          AT value
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            8.17
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="row pmt-ats-row  in-two-rows"
+    >
+      <div
+        className="col-sm-3 pmt-at-name"
+      >
+        <span>
+          One on Ones
+        </span>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Technique (M + F)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            9.86
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Strength (M + F)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            8.29
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          AT value
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            9.07
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="row pmt-ats-row  in-two-rows"
+    >
+      <div
+        className="col-sm-3 pmt-at-name"
+      >
+        <span>
+          Gk Stand In
+        </span>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Reflex
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            9.00
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Handling
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            16.00
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          AT value
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            12.50
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="row pmt-ats-row  in-two-rows"
+    >
+      <div
+        className="col-sm-3 pmt-at-name"
+      >
+        <span>
+          Gk Rushing Out
+        </span>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Agility
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            13.00
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Crossing
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            20.00
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          AT value
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            16.50
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="row pmt-ats-row  in-two-rows"
+    >
+      <div
+        className="col-sm-3 pmt-at-name"
+      >
+        <span>
+          Long Shots
+        </span>
+        <span
+          aria-hidden="true"
+          className="glyphicon glyphicon-ok float-right"
+          title="At is active"
+        />
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Finishing (M + F)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            11.57
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Technique (M + F)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            9.86
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          AT value
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            10.71
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="row pmt-ats-row  in-two-rows"
+    >
+      <div
+        className="col-sm-3 pmt-at-name"
+      >
+        <span>
+          First Time Shots
+        </span>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Finishing (F)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            19.00
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Heading (F)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            6.50
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          AT value
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            12.75
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Tactic/Advance Tactics Without Previous Data 1`] = `
+<div
+  className="pmt-root pmt-tactic-summary"
+>
+  <div
+    className="pmt-ats container-fluid"
+  >
+    <div
+      className="row panel panel-default pmt-ats-options"
+    >
+      <div
+        className="panel-body"
+      >
+        <div
+          className="pmt-ats-option"
+        >
+          <label
+            className="checkbox-inline"
+          >
+            <input
+              checked={true}
+              name="ats"
+              onChange={[Function]}
+              type="checkbox"
+            />
+            Ats
+          </label>
+          <label
+            className="checkbox-inline"
+          >
+            <input
+              checked={false}
+              name="vsAts"
+              onChange={[Function]}
+              type="checkbox"
+            />
+            Opponent Ats
+          </label>
+        </div>
+        <div
+          className="pmt-ats-row-view-option"
+        >
+          <label
+            className="radio-inline"
+          >
+            <input
+              checked={true}
+              onChange={[Function]}
+              type="radio"
+            />
+            In two rows
+          </label>
+          <label
+            className="radio-inline"
+          >
+            <input
+              checked={false}
+              onChange={[Function]}
+              type="radio"
+            />
+            In one row
+          </label>
+        </div>
+      </div>
+    </div>
+    <div
+      className="row pmt-ats-row  in-two-rows"
+    >
+      <div
+        className="col-sm-3 pmt-at-name"
+      >
+        <span>
+          Offside Trap
+        </span>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Positioning (D)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            15.00
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Speed (D)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            10.00
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+           
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span />
+        </div>
+      </div>
+    </div>
+    <div
+      className="row pmt-ats-row  in-two-rows"
+    >
+      <div
+        className="col-sm-3 pmt-at-name"
+      >
+        <span>
+          Pressing - High
+        </span>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Passing (All)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            10.64
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Speed (All)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            12.55
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+           
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span />
+        </div>
+      </div>
+    </div>
+    <div
+      className="row pmt-ats-row  in-two-rows"
+    >
+      <div
+        className="col-sm-3 pmt-at-name"
+      >
+        <span>
+          Pressing - Low
+        </span>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Tackling (All)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            6.82
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Speed (All) lower best
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            12.55
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+           
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span />
+        </div>
+      </div>
+    </div>
+    <div
+      className="row pmt-ats-row  in-two-rows"
+    >
+      <div
+        className="col-sm-3 pmt-at-name"
+      >
+        <span>
+          Counter attack
+        </span>
+        <span
+          aria-hidden="true"
+          className="glyphicon glyphicon-ok float-right"
+          title="At is active"
+        />
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Passing (All)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            10.64
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Speed (All)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            12.55
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+           
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span />
+        </div>
+      </div>
+    </div>
+    <div
+      className="row pmt-ats-row  in-two-rows"
+    >
+      <div
+        className="col-sm-3 pmt-at-name"
+      >
+        <span>
+          High Balls
+        </span>
+        <span
+          aria-hidden="true"
+          className="glyphicon glyphicon-ok float-right"
+          title="At is active"
+        />
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Heading (All)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            7.45
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Strength (All)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            8.91
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+           
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span />
+        </div>
+      </div>
+    </div>
+    <div
+      className="row pmt-ats-row  in-two-rows"
+    >
+      <div
+        className="col-sm-3 pmt-at-name"
+      >
+        <span>
+          Marking - Zonal
+        </span>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Tackling (D + M)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            8.67
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Speed (D + M)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            14.17
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          AT value
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            11.42
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="row pmt-ats-row  in-two-rows"
+    >
+      <div
+        className="col-sm-3 pmt-at-name"
+      >
+        <span>
+          Marking - Man to Man
+        </span>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Tackling (D + M)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            8.67
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Strength (D + M)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            7.67
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          AT value
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            8.17
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="row pmt-ats-row  in-two-rows"
+    >
+      <div
+        className="col-sm-3 pmt-at-name"
+      >
+        <span>
+          One on Ones
+        </span>
+        <span
+          aria-hidden="true"
+          className="glyphicon glyphicon-ok float-right"
+          title="At is active"
+        />
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Technique (M + F)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            10.00
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Strength (M + F)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            8.71
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          AT value
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            9.36
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="row pmt-ats-row  in-two-rows"
+    >
+      <div
+        className="col-sm-3 pmt-at-name"
+      >
+        <span>
+          Gk Stand In
+        </span>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Reflex
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            9.00
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Handling
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            16.00
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          AT value
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            12.50
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="row pmt-ats-row  in-two-rows"
+    >
+      <div
+        className="col-sm-3 pmt-at-name"
+      >
+        <span>
+          Gk Rushing Out
+        </span>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Agility
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            13.00
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Crossing
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            20.00
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          AT value
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            16.50
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="row pmt-ats-row  in-two-rows"
+    >
+      <div
+        className="col-sm-3 pmt-at-name"
+      >
+        <span>
+          Long Shots
+        </span>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Finishing (M + F)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            10.86
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Technique (M + F)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            10.00
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          AT value
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            10.43
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="row pmt-ats-row  in-two-rows"
+    >
+      <div
+        className="col-sm-3 pmt-at-name"
+      >
+        <span>
+          First Time Shots
+        </span>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Finishing (F)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            17.75
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Heading (F)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            9.50
+          </span>
+        </div>
+      </div>
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          AT value
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            13.63
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Tactic/AdvanceTacticOptions In One Row 1`] = `
+<div
+  className="pmt-root pmt-tactic-summary"
+>
+  <div
+    className="pmt-ats"
+  >
+    <div
+      className="row panel panel-default pmt-ats-options"
+    >
+      <div
+        className="panel-body"
+      >
+        <div
+          className="pmt-ats-option"
+        >
+          <label
+            className="checkbox-inline"
+          >
+            <input
+              checked={false}
+              name="ats"
+              onChange={[Function]}
+              type="checkbox"
+            />
+            Ats
+          </label>
+          <label
+            className="checkbox-inline"
+          >
+            <input
+              checked={true}
+              name="vsAts"
+              onChange={[Function]}
+              type="checkbox"
+            />
+            Opponent Ats
+          </label>
+        </div>
+        <div
+          className="pmt-ats-row-view-option"
+        >
+          <label
+            className="radio-inline"
+          >
+            <input
+              checked={false}
+              onChange={[Function]}
+              type="radio"
+            />
+            In two rows
+          </label>
+          <label
+            className="radio-inline"
+          >
+            <input
+              checked={true}
+              onChange={[Function]}
+              type="radio"
+            />
+            In one row
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Tactic/AdvanceTacticOptions In Two Rows 1`] = `
+<div
+  className="pmt-root pmt-tactic-summary"
+>
+  <div
+    className="pmt-ats"
+  >
+    <div
+      className="row panel panel-default pmt-ats-options"
+    >
+      <div
+        className="panel-body"
+      >
+        <div
+          className="pmt-ats-option"
+        >
+          <label
+            className="checkbox-inline"
+          >
+            <input
+              checked={false}
+              name="ats"
+              onChange={[Function]}
+              type="checkbox"
+            />
+            Ats
+          </label>
+          <label
+            className="checkbox-inline"
+          >
+            <input
+              checked={true}
+              name="vsAts"
+              onChange={[Function]}
+              type="checkbox"
+            />
+            Opponent Ats
+          </label>
+        </div>
+        <div
+          className="pmt-ats-row-view-option"
+        >
+          <label
+            className="radio-inline"
+          >
+            <input
+              checked={true}
+              onChange={[Function]}
+              type="radio"
+            />
+            In two rows
+          </label>
+          <label
+            className="radio-inline"
+          >
+            <input
+              checked={false}
+              onChange={[Function]}
+              type="radio"
+            />
+            In one row
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Tactic/AtValueInOneRow Negative Delta 1`] = `
+<div
+  className="pmt-root pmt-tactic-summary"
+>
+  <div
+    className="pmt-ats"
+  >
+    <div
+      className="pmt-ats-row"
+    >
+      <div
+        className="col-xs-2 pmt-at-condition"
+      >
+        Passing (All)
+      </div>
+      <div
+        className="col-xs-1 text-center pmt-at-value"
+      >
+         
+        <span>
+          15.11
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Tactic/AtValueInOneRow Positive Delta 1`] = `
+<div
+  className="pmt-root pmt-tactic-summary"
+>
+  <div
+    className="pmt-ats"
+  >
+    <div
+      className="pmt-ats-row"
+    >
+      <div
+        className="col-xs-2 pmt-at-condition"
+      >
+        Speed (All)
+      </div>
+      <div
+        className="col-xs-1 text-center pmt-at-value"
+      >
+         
+        <span>
+          8.01
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Tactic/AtValueInTowRows Negative Delta 1`] = `
+<div
+  className="pmt-root pmt-tactic-summary"
+>
+  <div
+    className="pmt-ats"
+  >
+    <div
+      className="pmt-ats-row"
+    >
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Passing (All)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            15.11
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Tactic/AtValueInTowRows Positive Delta 1`] = `
+<div
+  className="pmt-root pmt-tactic-summary"
+>
+  <div
+    className="pmt-ats"
+  >
+    <div
+      className="pmt-ats-row"
+    >
+      <div
+        className="col-xs-3 pmt-at-details"
+      >
+        <div
+          className="pmt-short-div text-center pmt-at-condition"
+        >
+          Speed (All)
+        </div>
+        <div
+          className="pmt-short-div text-center pmt-at-value"
+        >
+           
+          <span>
+            8.01
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Tactic/AtValues Negative Delta 1`] = `
+<div
+  className="pmt-root pmt-tactic-summary"
+>
+  <div
+    className="pmt-ats"
+  >
+    <div
+      className="pmt-ats-row"
+    >
+      <div
+        className="col-xs-2 pmt-at-condition"
+      >
+        Tackling (D + M)
+      </div>
+      <div
+        className="col-xs-1 text-center pmt-at-value"
+      >
+         
+        <span>
+          11.03
+        </span>
+      </div>
+      <div
+        className="col-xs-2 pmt-at-condition"
+      >
+        Speed (D + M)
+      </div>
+      <div
+        className="col-xs-1 text-center pmt-at-value"
+      >
+         
+        <span>
+          20.30
+        </span>
+      </div>
+      <div
+        className="col-xs-2 pmt-at-condition"
+      >
+        AT value
+      </div>
+      <div
+        className="col-xs-1 text-center pmt-at-value"
+      >
+         
+        <span>
+          9.12
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Tactic/TacticSummary Primary 1`] = `
+<div>
+  <button
+    onClick={[Function]}
+  >
+    Full squad
+  </button>
+   
+  <button
+    onClick={[Function]}
+  >
+    Only GK in squad
+  </button>
+  <div
+    className="pmt-root pmt-tactic-summary"
+  >
+    <div>
+      <ul
+        className="nav nav-tabs"
+        role="tablist"
+      >
+        <li
+          className="active"
+          role="presentation"
+        >
+          <a
+            aria-controls="profile"
+            href="#ats"
+            id="ATs"
+            onClick={[Function]}
+            role="tab"
+          >
+            Ats
+          </a>
+        </li>
+        <li
+          className=""
+          role="presentation"
+        >
+          <a
+            aria-controls="home"
+            href="#sums"
+            id="Sums"
+            onClick={[Function]}
+            role="tab"
+          >
+            Sums
+          </a>
+        </li>
+      </ul>
+      <div
+        className="tab-content"
+      >
+        <div
+          className="tab-pane active"
+          id="ATs"
+          role="tabpanel"
+        >
+          <div
+            className="text-center"
+          >
+             no stats
+          </div>
+        </div>
+        <div
+          className="tab-pane "
+          id="Sums"
+          role="tabpanel"
+        >
+          <div
+            className="text-center"
+          >
+            no data
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Tactic/TacticSummary Second 1`] = `
+<div>
+  <button
+    onClick={[Function]}
+  >
+    Full squad
+  </button>
+   
+  <button
+    onClick={[Function]}
+  >
+    Only GK in squad
+  </button>
+  <div
+    className="pmt-root pmt-tactic-summary"
+  >
+    <div>
+      <ul
+        className="nav nav-tabs"
+        role="tablist"
+      >
+        <li
+          className="active"
+          role="presentation"
+        >
+          <a
+            aria-controls="profile"
+            href="#ats"
+            id="ATs"
+            onClick={[Function]}
+            role="tab"
+          >
+            Ats
+          </a>
+        </li>
+        <li
+          className=""
+          role="presentation"
+        >
+          <a
+            aria-controls="home"
+            href="#sums"
+            id="Sums"
+            onClick={[Function]}
+            role="tab"
+          >
+            Sums
+          </a>
+        </li>
+      </ul>
+      <div
+        className="tab-content"
+      >
+        <div
+          className="tab-pane active"
+          id="ATs"
+          role="tabpanel"
+        >
+          <div
+            className="text-center"
+          >
+             no stats
+          </div>
+        </div>
+        <div
+          className="tab-pane "
+          id="Sums"
+          role="tabpanel"
+        >
+          <div
+            className="text-center"
+          >
+            no data
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Tactic/TacticSums Primary 1`] = `
+<div
+  className="pmt-root pmt-tactic-summary"
+>
+  <table
+    className="pmt-sums table table-condensed table-striped table-hover table-bordered"
+  >
+    <thead>
+      <tr>
+        <th>
+          Skill
+        </th>
+        <th
+          colSpan={2}
+        >
+          All
+        </th>
+        <th
+          className="pmt-gk"
+        >
+          Golkeapers
+        </th>
+        <th
+          colSpan={2}
+        >
+          Defenders
+        </th>
+        <th
+          colSpan={2}
+        >
+          Midfielders
+        </th>
+        <th
+          colSpan={2}
+        >
+          Forwards
+        </th>
+      </tr>
+      <tr>
+        <th />
+        <th>
+          Sum
+        </th>
+        <th>
+          Avg
+        </th>
+        <th>
+          Sum
+        </th>
+        <th>
+          Sum
+        </th>
+        <th>
+          Avg
+        </th>
+        <th>
+          Sum
+        </th>
+        <th>
+          Avg
+        </th>
+        <th>
+          Sum
+        </th>
+        <th>
+          Avg
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>
+          tackling
+        </th>
+        <td>
+           
+          <span>
+            75
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 67.835%",
+            }
+          }
+        >
+           
+          <span>
+            6.82
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 67.25%",
+            }
+          }
+        >
+           
+          <span>
+            7
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            41
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 45.5725%",
+            }
+          }
+        >
+           
+          <span>
+            13.67
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            11
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 78.0725%",
+            }
+          }
+        >
+           
+          <span>
+            3.67
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            16
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 77%",
+            }
+          }
+        >
+           
+          <span>
+            4
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          heading
+        </th>
+        <td>
+           
+          <span>
+            82
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 65.7875%",
+            }
+          }
+        >
+           
+          <span>
+            7.45
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 73.75%",
+            }
+          }
+        >
+           
+          <span>
+            5
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            29
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 58.572500000000005%",
+            }
+          }
+        >
+           
+          <span>
+            9.67
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            10
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 79.1775%",
+            }
+          }
+        >
+           
+          <span>
+            3.33
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            38
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 59.125%",
+            }
+          }
+        >
+           
+          <span>
+            9.5
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          passing
+        </th>
+        <td>
+           
+          <span>
+            116
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 55.71249999999999%",
+            }
+          }
+        >
+           
+          <span>
+            10.55
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 67.25%",
+            }
+          }
+        >
+           
+          <span>
+            7
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            35
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 52.0725%",
+            }
+          }
+        >
+           
+          <span>
+            11.67
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            60
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 25%",
+            }
+          }
+        >
+           
+          <span>
+            20
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            14
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 78.625%",
+            }
+          }
+        >
+           
+          <span>
+            3.5
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          positioning
+        </th>
+        <td>
+           
+          <span>
+            115
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 56.0375%",
+            }
+          }
+        >
+           
+          <span>
+            10.45
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 73.75%",
+            }
+          }
+        >
+           
+          <span>
+            5
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            44
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 42.3225%",
+            }
+          }
+        >
+           
+          <span>
+            14.67
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            32
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 55.322500000000005%",
+            }
+          }
+        >
+           
+          <span>
+            10.67
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            34
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 62.375%",
+            }
+          }
+        >
+           
+          <span>
+            8.5
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          finishing
+        </th>
+        <td>
+           
+          <span>
+            96
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 61.6275%",
+            }
+          }
+        >
+           
+          <span>
+            8.73
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 83.5%",
+            }
+          }
+        >
+           
+          <span>
+            2
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            18
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 70.5%",
+            }
+          }
+        >
+           
+          <span>
+            6
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            5
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 84.5725%",
+            }
+          }
+        >
+           
+          <span>
+            1.67
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            71
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 32.3125%",
+            }
+          }
+        >
+           
+          <span>
+            17.75
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          technique
+        </th>
+        <td>
+           
+          <span>
+            89
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 63.7075%",
+            }
+          }
+        >
+           
+          <span>
+            8.09
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 73.75%",
+            }
+          }
+        >
+           
+          <span>
+            5
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            15
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 73.75%",
+            }
+          }
+        >
+           
+          <span>
+            5
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            21
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 67.25%",
+            }
+          }
+        >
+           
+          <span>
+            7
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            48
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 51%",
+            }
+          }
+        >
+           
+          <span>
+            12
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          speed
+        </th>
+        <td>
+           
+          <span>
+            136
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 49.83%",
+            }
+          }
+        >
+           
+          <span>
+            12.36
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 44.5%",
+            }
+          }
+        >
+           
+          <span>
+            14
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            29
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 58.572500000000005%",
+            }
+          }
+        >
+           
+          <span>
+            9.67
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            54
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 31.5%",
+            }
+          }
+        >
+           
+          <span>
+            18
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            39
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 58.3125%",
+            }
+          }
+        >
+           
+          <span>
+            9.75
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          strength
+        </th>
+        <td>
+           
+          <span>
+            98
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 61.042500000000004%",
+            }
+          }
+        >
+           
+          <span>
+            8.91
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 64%",
+            }
+          }
+        >
+           
+          <span>
+            8
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            29
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 58.572500000000005%",
+            }
+          }
+        >
+           
+          <span>
+            9.67
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            17
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 71.5725%",
+            }
+          }
+        >
+           
+          <span>
+            5.67
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            44
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 54.25%",
+            }
+          }
+        >
+           
+          <span>
+            11
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          handling
+        </th>
+        <td>
+           
+          <span>
+            70
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 69.33%",
+            }
+          }
+        >
+           
+          <span>
+            6.36
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 38%",
+            }
+          }
+        >
+           
+          <span>
+            16
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            15
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 73.75%",
+            }
+          }
+        >
+           
+          <span>
+            5
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            17
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 71.5725%",
+            }
+          }
+        >
+           
+          <span>
+            5.67
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            22
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 72.125%",
+            }
+          }
+        >
+           
+          <span>
+            5.5
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          outOfArea
+        </th>
+        <td>
+           
+          <span>
+            57
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 73.16499999999999%",
+            }
+          }
+        >
+           
+          <span>
+            5.18
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 25%",
+            }
+          }
+        >
+           
+          <span>
+            20
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            11
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 78.0725%",
+            }
+          }
+        >
+           
+          <span>
+            3.67
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            7
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 82.4275%",
+            }
+          }
+        >
+           
+          <span>
+            2.33
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            19
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 74.5625%",
+            }
+          }
+        >
+           
+          <span>
+            4.75
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          reflexes
+        </th>
+        <td>
+           
+          <span>
+            52
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 74.6275%",
+            }
+          }
+        >
+           
+          <span>
+            4.73
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 60.75%",
+            }
+          }
+        >
+           
+          <span>
+            9
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            15
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 73.75%",
+            }
+          }
+        >
+           
+          <span>
+            5
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            10
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 79.1775%",
+            }
+          }
+        >
+           
+          <span>
+            3.33
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            18
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 75.375%",
+            }
+          }
+        >
+           
+          <span>
+            4.5
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          agility
+        </th>
+        <td>
+           
+          <span>
+            58
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 72.8725%",
+            }
+          }
+        >
+           
+          <span>
+            5.27
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 47.75%",
+            }
+          }
+        >
+           
+          <span>
+            13
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            13
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 75.9275%",
+            }
+          }
+        >
+           
+          <span>
+            4.33
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            12
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 77%",
+            }
+          }
+        >
+           
+          <span>
+            4
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            20
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 73.75%",
+            }
+          }
+        >
+           
+          <span>
+            5
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          gs
+        </th>
+        <td>
+           
+          <span>
+            58
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 72.8725%",
+            }
+          }
+        >
+           
+          <span>
+            5.27
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 72.8725%",
+            }
+          }
+        >
+           
+          <span>
+            58
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            58
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 72.8725%",
+            }
+          }
+        >
+           
+          <span>
+            5.27
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            58
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 72.8725%",
+            }
+          }
+        >
+           
+          <span>
+            5.27
+          </span>
+        </td>
+        <td>
+           
+          <span>
+            58
+          </span>
+        </td>
+        <td
+          style={
+            Object {
+              "color": "hsl(255, 100%, 72.8725%",
+            }
+          }
+        >
+           
+          <span>
+            5.27
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  ;
+</div>
+`;

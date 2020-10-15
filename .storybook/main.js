@@ -19,7 +19,7 @@ module.exports = {
         const filteredPlugins = options.plugins.filter(
             (plugin) => typeof plugin !== 'string' || !plugin.endsWith('@babel/plugin-transform-classes/lib/index.js'),
         );
-        console.log('** Bable Plugins Length **: ', options.plugins.length, filteredPlugins.length);
+        console.log('** Babel Plugins Length **: ', options.plugins.length, filteredPlugins.length);
         options.plugins = [...filteredPlugins, 'babel-plugin-transform-typescript-metadata'];
 
         return options;

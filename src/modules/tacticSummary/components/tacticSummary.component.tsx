@@ -40,16 +40,16 @@ export class TacticSummary extends React.Component<Readonly<Record<string, unkno
 
     private positionsSubscriber(data: TacticEditorData) {
         const sumCalculator = container.resolve(TacticSkillsSumsCalculator);
-        log.debug('TacticSummary positionsSubscriber:', data);
+        log.trace('TacticSummary positionsSubscriber:', data);
 
         const sums = sumCalculator.calculate(data);
         const stats = sums && new TacticStats(sums);
-        log.debug('TacticSummary.positionsSubscriber stats:', stats, sums);
+        log.trace('TacticSummary.positionsSubscriber stats:', stats, sums);
         this.setState({ sums, stats, statsOld: this.state.stats, sumsOld: this.state.sums });
     }
 
     private atsSubscriber(ats: AdvanceTacticTypes[]) {
-        log.debug('TacticSummary atsSubscriber:', ats);
+        log.trace('TacticSummary atsSubscriber:', ats);
         this.setState({ activeAts: ats });
     }
 
@@ -80,7 +80,7 @@ export class TacticSummary extends React.Component<Readonly<Record<string, unkno
     }
 
     render(): ReactNode {
-        log.debug('TacticSummary.render');
+        log.trace('TacticSummary.render');
 
         return (
             <div>

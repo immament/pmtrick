@@ -9,8 +9,8 @@ module.exports = {
         tacticEditor: path.join(__dirname, 'src/modules/tacticSummary/services/tacticEditor.injected.ts'),
     },
     output: {
-        path: path.join(__dirname, 'dist/js'),
-        filename: '[name].js',
+        path: path.join(__dirname, 'dist'),
+        filename: 'js/[name].js',
     },
     module: {
         rules: [
@@ -66,8 +66,11 @@ module.exports = {
             patterns: [
                 {
                     from: 'node_modules/webextension-polyfill/dist/browser-polyfill.min.js',
-                    to: 'browser-polyfill.js',
+                    to: 'js/browser-polyfill.js',
                     toType: 'file',
+                },
+                {
+                    from: 'assets/to-dist',
                 },
             ],
         }),

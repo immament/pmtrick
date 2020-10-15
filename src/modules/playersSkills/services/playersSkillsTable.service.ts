@@ -3,11 +3,19 @@ import { createFutureSkillsTootip } from '@src/common/renders/createFutureSkills
 import { SkillsSummary } from '@src/modules/tacticSummary/model/skillsSummary.model';
 
 export abstract class PlayersSkillsTableService {
+    constructor(protected columnsConfig: Record<string, number>) {}
+
     abstract prepareTable(playersTable: HTMLTableElement): void;
 
     abstract createHeaderCells(): HTMLTableCellElement[];
 
     abstract createSkillsSummaryCells(summaries?: SkillsSummaryCombo): HTMLTableCellElement[];
+
+    hideColumns(columns: string[], htmlRow: HTMLTableRowElement): void {
+        for (const [name, index] of Object.entries(this.columnsConfig)) {
+            htmlRow.cells[index].style.display = columns.includes(name) ? 'none' : '';
+        }
+    }
 
     getPlayersTable(): HTMLTableElement | undefined {
         const tables = document.querySelectorAll<HTMLTableElement>('table.table_border');
@@ -36,7 +44,7 @@ export abstract class PlayersSkillsTableService {
             this.applyStyle(skillsSummary, classStyles);
             return this.createGsCell(
                 this.formatGs(skillsSummary.gs),
-                `Place in team: ${rank}`,
+                `Ranking: ${rank}`,
                 classStyles.length > 0 ? classStyles : undefined,
             );
         } else {

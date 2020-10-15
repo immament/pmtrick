@@ -1,6 +1,5 @@
-import { MatchesInSeasons } from '@src/common/services/storage/skillsTableOptions.repository';
-
 import { SkillsSummary } from '../../modules/tacticSummary/model/skillsSummary.model';
+import { FuturePredicationSettings } from '../services/settings/futurePredication.settings';
 
 import { PlayerSkills } from './playerSkills.model';
 
@@ -44,7 +43,7 @@ export interface SkillsSummaryWithBest extends SkillsSummaries {
 }
 
 export interface FutureSkillsSummaryWithBest extends SkillsSummaryWithBest {
-    options?: MatchesInSeasons;
+    options?: FuturePredicationSettings;
 }
 
 export interface SkillsSummaryCombo {

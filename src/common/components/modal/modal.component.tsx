@@ -10,6 +10,7 @@ export type ModalProps = {
     show: boolean;
     title: string;
     size?: 'lg' | 'sm';
+    className?: string;
 };
 export class Modal extends React.Component<ModalProps> {
     private element: Element;
@@ -32,7 +33,7 @@ export class Modal extends React.Component<ModalProps> {
     };
 
     private modalClassName(): string {
-        return this.props.size ? 'modal-' + this.props.size : '';
+        return `modal-dialog ${this.props.size ? 'modal-' + this.props.size : ''} ${this.props.className || ''}`;
     }
 
     render(): ReactNode {
@@ -41,7 +42,7 @@ export class Modal extends React.Component<ModalProps> {
         }
         return ReactDOM.createPortal(
             <div className="pmt-modal modal" id="modal">
-                <div className={'modal-dialog ' + this.modalClassName()} role="document">
+                <div className={this.modalClassName()} role="document">
                     <div className="modal-content">
                         <div className="modal-header">
                             <button

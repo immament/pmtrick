@@ -11,16 +11,11 @@ import { PlayerSkills } from '@src/common/model/playerSkills.model';
 import { getSkillsPartitions, SkillPartition, SkillsGroup } from '@src/common/model/skillPartition.model';
 import { SkillsSummary } from '@src/modules/tacticSummary/model/skillsSummary.model';
 
-import { CurrentPlayersRankService } from './playersRank.service';
-
 import type { GsFormula } from '@src/common/model/gsFormula.model';
 
 @injectable()
 export class SkillCalculatorService {
-    constructor(
-        @inject('GsFormula') private readonly _gsFormula: GsFormula,
-        private playersRankService?: CurrentPlayersRankService,
-    ) {}
+    constructor(@inject('GsFormula') private readonly _gsFormula: GsFormula) {}
 
     private _skillsPartitions = getSkillsPartitions();
 
@@ -57,7 +52,7 @@ export class SkillCalculatorService {
         } as SkillsSummary;
 
         summary.gs = this.gs(summary, this._gsFormula);
-        summary.rank = this.playersRankService?.getRank(summary.gs);
+        // summary.rank = this.playersRankService?.getRank(summary.gs);
         return summary;
     }
 

@@ -7,6 +7,12 @@ export function pick<T, K extends keyof T>(obj: T, ...keys: K[]): Pick<T, K> {
     return result;
 }
 
+export function pick2<T, K extends keyof T>(obj: T, ...keys: K[]): Pick<T, K> {
+    const result = {} as Pick<T, K>;
+    for (const key of keys) result[key] = obj[key];
+    return result;
+}
+
 // TS Helpers
 
 type FilterFlags<Base, Condition> = {
@@ -27,7 +33,7 @@ export function setProperty<T, K extends keyof T>(obj: T, key: K, value: T[K]): 
 
 export function usePrevious<T>(value?: T): T | undefined {
     const ref = useRef<T>();
-    log.debug('utils', 'ref.current', ref.current, value);
+    log.trace('utils', 'ref.current', ref.current, value);
     useEffect(() => {
         ref.current = value;
     });
@@ -41,3 +47,26 @@ export function usePrevious<T>(value?: T): T | undefined {
 //         [Key in keyof Base]: Base[Key] extends Condition ? Key : never;
 //     }[keyof Base]
 // >;
+
+export type CancelablePromise<T> = {
+    promise: Promise<T>;
+    cancel(): void;
+};
+
+export const makeCancelable = <T>(promise: Promise<T>): CancelablePromise<T> => {
+    let hasCanceled_ = false;
+
+    const wrappedPromise = new Promise<T>((resolve, reject) => {
+        promise.then(
+            (val) => (hasCanceled_ ? reject({ isCanceled: true }) : resolve(val)),
+            (error) => (hasCanceled_ ? reject({ isCanceled: true }) : reject(error)),
+        );
+    });
+
+    return {
+        promise: wrappedPromise,
+        cancel() {
+            hasCanceled_ = true;
+        },
+    };
+};

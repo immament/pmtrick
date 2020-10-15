@@ -27,7 +27,7 @@ export default class PlayersSkillsContentService implements ContentScriptService
         const titleBar = document.querySelector('div.panel-primary3 div.panel-heading');
 
         if (titleBar) {
-            titleBar.classList.add('pmt-flex', 'pmt-justify-space-between');
+            titleBar.classList.add('pmt-flex', 'pmt-justify-content-between');
             const optionsBar = document.createElement('div');
             optionsBar.id = 'pmt-options-root';
             titleBar.appendChild(optionsBar);

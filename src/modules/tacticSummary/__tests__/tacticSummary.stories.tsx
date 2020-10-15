@@ -40,9 +40,9 @@ const Template: Story = (args) => (
     </div>
 );
 
-export const First = Template.bind({});
+export const Primary = Template.bind({});
 
-First.args = {};
+Primary.args = {};
 
 export const Second = Template.bind({});
 Second.args = {};

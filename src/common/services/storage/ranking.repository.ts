@@ -2,7 +2,7 @@ import { singleton } from 'tsyringe';
 
 import { Ranking } from '../rankingBuilder';
 
-import { BaseRepository } from './baseRepository';
+import { BaseRepository } from './base.repository';
 
 const _moduleName = 'skills-rankings';
 

@@ -44,7 +44,7 @@ InTwoRows.args = {
 };
 
 advanceTactic = atConfig[2];
-log.debug('advanceTactic.stories', 'advanceTactic:', advanceTactic);
+log.trace('advanceTactic.stories', 'advanceTactic:', advanceTactic);
 
 export const OpponentInOneRow = Template.bind({});
 OpponentInOneRow.args = {
@@ -56,7 +56,7 @@ OpponentInOneRow.args = {
 };
 
 advanceTactic = atConfig[5];
-log.debug('advanceTactic.stories', 'advanceTactic:', advanceTactic);
+log.trace('advanceTactic.stories', 'advanceTactic:', advanceTactic);
 
 export const OpponentInTwoRows = Template.bind({});
 OpponentInTwoRows.args = {

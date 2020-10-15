@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "PmTrick",
-    "description": "Planetarium manager extension",
+    "description": "Planetarium Manager online football manager game Browser Extension.",
     "version": "0.0.2",
     "browser_action": {
         "default_icon": "icon-16.png"
@@ -18,7 +18,7 @@
         "48": "icon-48.png",
         "128": "icon-128.png"
     },
-    "permissions": ["tabs", "activeTab", "management", "notifications", "storage", "https://*.pmanager.org/"],
-    "content_security_policy": "connect-src ws://localhost:8097; object-src 'self'; script-src 'self'",
+    "permissions": [],
+    "content_security_policy": "object-src 'self'; script-src 'self'",
     "web_accessible_resources": ["js/tacticEditor.js"]
 }

@@ -5,12 +5,12 @@ export class FullTrainings {
         fullSeasonLeagueMatches = 18,
         fullSeasonFriendlyMatches = 12,
     }: {
-        currentSeasonLeagueMatches: number;
-        currentSeasonFriendlyMatches: number;
+        currentSeasonLeagueMatches?: number;
+        currentSeasonFriendlyMatches?: number;
         fullSeasonLeagueMatches?: number;
         fullSeasonFriendlyMatches?: number;
     }) {
-        this.curentSeason = currentSeasonLeagueMatches + currentSeasonFriendlyMatches / 2;
+        this.curentSeason = (currentSeasonLeagueMatches ?? 0) + (currentSeasonFriendlyMatches ?? 0) / 2;
         this.fullSeason = fullSeasonLeagueMatches + fullSeasonFriendlyMatches / 2;
     }
 
