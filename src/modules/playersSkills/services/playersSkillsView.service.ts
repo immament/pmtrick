@@ -1,6 +1,6 @@
 import log from 'loglevel';
 import { Subscription } from 'rxjs';
-import { singleton } from 'tsyringe';
+import { injectable } from 'tsyringe';
 
 import { Player, PlayerWithSkillsSummaries } from '@src/common/model/player.model';
 import { getPotentialConfig } from '@src/common/model/potential.model';
@@ -27,29 +27,27 @@ export const _potentialConfig = getPotentialConfig();
  * Oblicza dodatkowe dane graczy
  * Dodaje kolumny do tabeli graczy
  */
-@singleton()
+@injectable()
 export class PlayersSkillsViewService {
     private playersTable?: Table<PlayerWithSkillsSummaries>;
 
     private onSettingsChangedSubs?: Subscription;
 
-    private readonly tableService: PlayersSkillsTableService;
-    private readonly pageSettingsService: PageSettingsService;
+    private tableService?: PlayersSkillsTableService;
+    private pageSettingsService?: PageSettingsService;
 
     private settings: PlayersSkillsViewSettings = { hiddenColumns: [] };
 
     constructor(
         private readonly settingsRepository: SettingsRepository,
-        playersSkillsFactory: PlayersSkillsFactory,
+        private readonly playersSkillsFactory: PlayersSkillsFactory,
         private readonly processPlayerService: ProcessPlayerService,
     ) {
         log.trace('PlayersSkillsViewService.ctor +');
-
-        this.tableService = playersSkillsFactory.getPlayersSkillsTableService();
-        this.pageSettingsService = playersSkillsFactory.getPlayersSettingsService();
     }
 
     public async run(): Promise<void> {
+        this.init();
         if (!this.playersTable) {
             await this.loadSettings();
             this.playersTable = this.extractTableFromHtml();
@@ -62,6 +60,11 @@ export class PlayersSkillsViewService {
         await this.updatePlayers(this.playersTable);
     }
 
+    private init(): void {
+        this.tableService = this.playersSkillsFactory.getPlayersSkillsTableService();
+        this.pageSettingsService = this.playersSkillsFactory.getPlayersSettingsService();
+    }
+
     private async updatePlayers(playersTable?: Table<PlayerWithSkillsSummaries>): Promise<void> {
         if (!playersTable) {
             return;
@@ -71,7 +74,8 @@ export class PlayersSkillsViewService {
             const player = row.data;
             row.data = this.processPlayerService.processPlayer(player);
             this.processPlayerService.updatePlayerRanking(row.data.skillsSummaries);
-            row.applyHtmlCells(this.tableService.createSkillsSummaryCells(row.data.skillsSummaries));
+            this.tableService &&
+                row.applyHtmlCells(this.tableService.createSkillsSummaryCells(row.data.skillsSummaries));
         }
 
         await this.updateColumnsVisibility(this.playersTable);
@@ -79,7 +83,7 @@ export class PlayersSkillsViewService {
 
     private addColumnHeaders(playersTable: Table<PlayerWithSkillsSummaries>) {
         for (const header of playersTable.headers) {
-            header.applyHtmlCells(this.tableService.createHeaderCells());
+            this.tableService && header.applyHtmlCells(this.tableService.createHeaderCells());
         }
     }
 
@@ -90,13 +94,14 @@ export class PlayersSkillsViewService {
 
         for (const row of playersTable.rows) {
             this.processPlayerService.updatePlayerRanking(row.data.skillsSummaries);
-            row.applyHtmlCells(this.tableService.createSkillsSummaryCells(row.data.skillsSummaries));
+            this.tableService &&
+                row.applyHtmlCells(this.tableService.createSkillsSummaryCells(row.data.skillsSummaries));
         }
         await this.updateColumnsVisibility(this.playersTable);
     }
 
     private async updateColumnsVisibility(playersTable?: Table<PlayerWithSkillsSummaries>): Promise<void> {
-        if (!playersTable) {
+        if (!playersTable || !this.tableService) {
             return;
         }
 
@@ -143,7 +148,7 @@ export class PlayersSkillsViewService {
                             .then(() => this.updateRanking(this.playersTable));
                     }
                     break;
-                case this.pageSettingsService.key:
+                case this.pageSettingsService?.key:
                     {
                         this.settings = { ...this.settings, ...changes[key].newValue };
                         this.updateColumnsVisibility(this.playersTable);
@@ -156,10 +161,10 @@ export class PlayersSkillsViewService {
     private async loadSettings(): Promise<void> {
         const loadedSettings = await this.settingsRepository.getMultipleSettings<
             PlayersSkillsViewServiceSettings & Record<string, BaseSettings>
-        >([_rankingsSettingsKey, _futurePredicationSettingsKey, this.pageSettingsService.key]);
+        >([_rankingsSettingsKey, _futurePredicationSettingsKey, this.pageSettingsService?.key || '']);
 
         log.debug('playersSkillsView.service', 'settings', loadedSettings);
-        this.settings = { ...this.settings, ...loadedSettings[this.pageSettingsService.key] };
+        this.settings = { ...this.settings, ...loadedSettings[this.pageSettingsService?.key || ''] };
         this.processPlayerService.refreshFuturePredicationSettings(
             loadedSettings.futurePredicationSettings as FuturePredicationSettings,
         );
@@ -170,7 +175,7 @@ export class PlayersSkillsViewService {
 
     // #region Przetwarza tabele graczy <Player> z umiejątnościami
     private extractTableFromHtml(): Table<Player> | undefined {
-        const htmlPlayersTable = this.tableService.getPlayersTable();
+        const htmlPlayersTable = this.tableService?.getPlayersTable();
         if (!htmlPlayersTable) {
             log.warn('No players list on page!');
             return;
