@@ -24,5 +24,11 @@
     },
     "permissions": ["storage"],
     "content_security_policy": "object-src 'self'; script-src 'self'",
-    "web_accessible_resources": ["js/tacticEditor.js"]
+    "web_accessible_resources": ["js/tacticEditor.js"],
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "{3bdc34cb-b6e6-4ea4-bb31-6e9e38e8d84c}",
+            "strict_min_version": "55.0"
+        }
+    }
 }
