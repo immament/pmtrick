@@ -26,12 +26,9 @@ import { CancelablePromise, makeCancelable, pick } from '@src/common/services/ut
 
 import { FormGroup } from '../../../../common/components/form/formGroup.component';
 import { numberOptions } from '../../../../common/components/form/numberOptions.component';
-import {
-    PageSettingsService,
-    PlayersSkillsFactory,
-    PlayersSkillsViewSettings,
-} from '../../services/playersSkills.factory';
+import { PlayersSkillsFactory } from '../../services/playersSkills.factory';
 import { PlayersSkillsViewServiceSettings } from '../../services/playersSkillsViewServiceSettings';
+import { PageSettingsService, PlayersSkillsViewSettings } from '../../services/playersSkillsViewSettings';
 
 import { OnChangeRankingEvent, RankingOptions } from './rankingOptions.component';
 
@@ -85,7 +82,7 @@ export default class SkillsTableOptions extends React.Component<SkillsTableOptio
     constructor(props: SkillsTableOptionsProps) {
         super(props);
 
-        log.info('SkillsTableOptions.ctor +', props);
+        log.trace('SkillsTableOptions.ctor +', props);
         this.settingsRepository = container.resolve(SettingsRepository);
         const playersSkillsFactory = container.resolve(PlayersSkillsFactory);
         this.pageSettingsService = playersSkillsFactory.getPlayersSettingsService();

@@ -19,7 +19,7 @@ import { CheckboxItem } from '../checkboxItem.model';
 const checkBoxItems = container.resolve(CheckBoxItems);
 
 export default {
-    title: 'Common/CheckboxOptions3',
+    title: 'Common/CheckboxOptions',
     decorators: [(Story) => <Story />],
     component: CheckboxOptions,
 } as Meta;

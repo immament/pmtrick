@@ -25,9 +25,10 @@ import { DataRow, Header, Table } from '@src/common/services/table.wrapper';
 import { FutureSkillsService } from '../../../common/services/futureSkills.service';
 import { SkillCalculatorService } from '../../../common/services/skillCalculator.service';
 
-import { PageSettingsService, PlayersSkillsFactory, PlayersSkillsViewSettings } from './playersSkills.factory';
+import { PlayersSkillsFactory } from './playersSkills.factory';
 import { PlayersSkillsTableService } from './playersSkillsTable.service';
 import { PlayersSkillsViewServiceSettings } from './playersSkillsViewServiceSettings';
+import { PageSettingsService, PlayersSkillsViewSettings } from './playersSkillsViewSettings';
 
 const _potentialConfig = getPotentialConfig();
 

@@ -11,6 +11,7 @@
         "lint": "eslint --fix -c ./.eslintrc.js \"src/**/*.ts*\"",
         "prettify": "prettier --write \"src/**/*.ts*\"",
         "storybook": "start-storybook -p 6006",
+        "sb": "yarn storybook",
         "build-storybook": "build-storybook",
         "webpack-bundle-analyzer": "webpack-bundle-analyzer",
         "create-ext": "cd dist && zip -r -FS ../output/pmtrick.zip * --exclude '*.git*'"
