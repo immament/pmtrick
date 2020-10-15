@@ -88,6 +88,7 @@ export class PlayersSkillsViewService {
             this.processPlayerService.updatePlayerRanking(row.data.skillsSummaries);
             row.applyHtmlCells(this.tableService.createSkillsSummaryCells(row.data.skillsSummaries));
         }
+        await this.updateColumnsVisibility(this.playersTable);
     }
 
     private async updateColumnsVisibility(playersTable?: Table<PlayerWithSkillsSummaries>): Promise<void> {
