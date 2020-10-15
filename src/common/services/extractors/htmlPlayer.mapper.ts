@@ -9,9 +9,9 @@ export interface PlayerRowExtractorContract extends HtmlElementExtractor<HTMLTab
 }
 
 /** *******************************************
- * mapPlayerRowFromAndvenceTl
+ * mapPlayerRowFromAdvancedTl
  **/
-const mapPlayerRowFromAndvenceTlCellsConfig = {
+const mapPlayerRowFromAdvancedTlCellsConfig = {
     position: 0,
     name: 1,
     age: 2,
@@ -24,9 +24,9 @@ const mapPlayerRowFromAndvenceTlCellsConfig = {
     detailsTooltip: 18,
 };
 
-export class AndvenceTlPlayerRowExtractor implements PlayerRowExtractorContract {
+export class AdvancedTlPlayerRowExtractor implements PlayerRowExtractorContract {
     extract(row: HTMLTableRowElement): Player {
-        const cellsConfig = mapPlayerRowFromAndvenceTlCellsConfig;
+        const cellsConfig = mapPlayerRowFromAdvancedTlCellsConfig;
         const extractor = new PlayerRowExtractor(row);
 
         const positionText = extractor.getText(cellsConfig.position);
@@ -87,7 +87,7 @@ export function getPlayerMapper(): PlayerRowExtractorContract | undefined {
     const url = window.location.href;
 
     if (url.indexOf('procurar.asp') >= 0) {
-        return new AndvenceTlPlayerRowExtractor();
+        return new AdvancedTlPlayerRowExtractor();
     } else if (url.indexOf('plantel.asp') >= 0) {
         return new TeamSkillsPlayerRowExtractor();
     }
