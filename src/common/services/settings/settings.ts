@@ -64,3 +64,13 @@ const _transferListSettingsDefault: TransferListSettings = {
 export class TransferListSettings extends BaseSettings {
     hiddenColumns: string[] = [];
 }
+
+export const _teamPlayersSkillsSettingsKey = 'teamPlayersSkillsSettings';
+
+const _teamPlayersSkillsSettingsDefault: TeamPlayersSkillsSettings = {
+    hiddenColumns: [],
+};
+@settings(_teamPlayersSkillsSettingsKey, _teamPlayersSkillsSettingsDefault)
+export class TeamPlayersSkillsSettings extends BaseSettings {
+    hiddenColumns: string[] = [];
+}

@@ -1,6 +1,6 @@
 import log from 'loglevel';
 import { Subscription } from 'rxjs';
-import { inject, registry, singleton } from 'tsyringe';
+import { singleton } from 'tsyringe';
 
 import { FullTrainings } from '@src/common/model/fullTranings.model';
 import {
@@ -18,19 +18,14 @@ import {
     _futurePredicationSettingsKey,
     FuturePredicationSettings,
 } from '@src/common/services/settings/futurePredication.settings';
-import {
-    _rankingsSettingsKey,
-    _transferListSettingsKey,
-    RankingsSettings,
-    TransferListSettings,
-} from '@src/common/services/settings/settings';
+import { _rankingsSettingsKey, BaseSettings, RankingsSettings } from '@src/common/services/settings/settings';
 import { SettingsChange, SettingsRepository } from '@src/common/services/settings/settings.repository';
 import { DataRow, Header, Table } from '@src/common/services/table.wrapper';
 
 import { FutureSkillsService } from '../../../common/services/futureSkills.service';
 import { SkillCalculatorService } from '../../../common/services/skillCalculator.service';
 
-import { playersSkillsTableFactory } from './playersSkillsTable.factory';
+import { PageSettingsService, PlayersSkillsFactory, PlayersSkillsViewSettings } from './playersSkills.factory';
 import { PlayersSkillsTableService } from './playersSkillsTable.service';
 import { PlayersSkillsViewServiceSettings } from './playersSkillsViewServiceSettings';
 
@@ -41,12 +36,6 @@ const _potentialConfig = getPotentialConfig();
  * Oblicza dodatkowe dane graczy
  * Dodaje kolumny do tabeli graczy
  */
-@registry([
-    {
-        token: 'PlayersSkillsTableService',
-        useFactory: playersSkillsTableFactory,
-    },
-])
 @singleton()
 export class PlayersSkillsViewService {
     private playersTable?: Table<PlayerWithSkillsSummaries>;
@@ -54,27 +43,36 @@ export class PlayersSkillsViewService {
     private fullTrainings?: FullTrainings;
     private futureAge?: number;
     private futurePredicationSettings?: FuturePredicationSettings;
-    private transferListSettings?: TransferListSettings;
+
     private rankService?: PlayersRankService;
 
     private onSettingsChangedSubs?: Subscription;
+
+    private readonly tableService: PlayersSkillsTableService;
+    private readonly pageSettingsService: PageSettingsService;
+
+    private settings: PlayersSkillsViewSettings = { hiddenColumns: [] };
 
     constructor(
         private readonly skillCaluclatorService: SkillCalculatorService,
         private readonly futureSkillsService: FutureSkillsService,
         private readonly settingsRepository: SettingsRepository,
         private readonly playersRankServiceFactory: PlayersRankServiceFactory,
-        @inject('PlayersSkillsTableService') private readonly tableService: PlayersSkillsTableService,
+        playersSkillsFactory: PlayersSkillsFactory,
     ) {
         log.trace('PlayersSkillsViewService.ctor +');
+
+        this.tableService = playersSkillsFactory.getPlayersSkillsTableService();
+        this.pageSettingsService = playersSkillsFactory.getPlayersSettingsService();
     }
 
     public async run(): Promise<void> {
-        log.debug('PlayersSkillsViewService.run + this.playersTable is defined:', !!this.playersTable);
         if (!this.playersTable) {
             this.listenSettingsChanges();
             this.playersTable = this.extractTableFromHtml();
-            this.playersTable && this.tableService?.prepareTable(this.playersTable.htmlTable);
+            if (this.playersTable) {
+                this.tableService?.prepareTable(this.playersTable.htmlTable);
+            }
             await this.loadSettings();
         }
         await this.updatePlayers(this.playersTable);
@@ -114,16 +112,16 @@ export class PlayersSkillsViewService {
             return;
         }
 
-        log.debug('playersSkillsView.service', 'updateColumnsVisibility', this.transferListSettings?.hiddenColumns);
+        log.debug('playersSkillsView.service', 'updateColumnsVisibility', this.settings.hiddenColumns);
 
-        if (!this.transferListSettings?.hiddenColumns) return;
+        if (!this.settings.hiddenColumns) return;
 
         for (const header of playersTable.headers) {
-            this.tableService.hideColumns(this.transferListSettings.hiddenColumns, header.htmlRow);
+            this.tableService.hideColumns(this.settings.hiddenColumns, header.htmlRow);
         }
 
         for (const row of playersTable.rows) {
-            this.tableService.hideColumns(this.transferListSettings.hiddenColumns, row.htmlRow);
+            this.tableService.hideColumns(this.settings.hiddenColumns, row.htmlRow);
         }
     }
 
@@ -153,9 +151,9 @@ export class PlayersSkillsViewService {
                         this.prepareRankings(rankingsSettings).then(() => this.updateRanking(this.playersTable));
                     }
                     break;
-                case _transferListSettingsKey:
+                case this.pageSettingsService.key:
                     {
-                        this.transferListSettings = changes[_transferListSettingsKey].newValue;
+                        this.settings = { ...this.settings, ...changes[key].newValue };
                         this.updateColumnsVisibility(this.playersTable);
                     }
                     break;
@@ -164,17 +162,14 @@ export class PlayersSkillsViewService {
     }
 
     private async loadSettings(): Promise<void> {
-        const settings = await this.settingsRepository.getMultipleSettings<PlayersSkillsViewServiceSettings>([
-            _rankingsSettingsKey,
-            _futurePredicationSettingsKey,
-            _transferListSettingsKey,
-        ]);
+        const loadedSettings = await this.settingsRepository.getMultipleSettings<
+            PlayersSkillsViewServiceSettings & Record<string, BaseSettings>
+        >([_rankingsSettingsKey, _futurePredicationSettingsKey, this.pageSettingsService.key]);
 
-        log.debug('playersSkillsView.service', 'settings', settings);
-        this.transferListSettings = settings.transferListSettings;
-        this.refreshFuturePredicationSettings(settings.futurePredicationSettings);
-        await this.prepareRankings(settings.rankingsSettings);
-        return;
+        log.debug('playersSkillsView.service', 'settings', loadedSettings);
+        this.settings = { ...this.settings, ...loadedSettings[this.pageSettingsService.key] };
+        this.refreshFuturePredicationSettings(loadedSettings.futurePredicationSettings as FuturePredicationSettings);
+        await this.prepareRankings(loadedSettings.rankingsSettings);
     }
 
     private async prepareRankings(rankingsSettings?: RankingsSettings) {

@@ -16,7 +16,7 @@ import {
 } from '@src/common/services/settings/futurePredication.settings';
 import {
     _rankingsSettingsKey,
-    _transferListSettingsKey,
+    BaseSettings,
     RankingRange,
     RankingsSettings,
     TransferListSettings,
@@ -26,6 +26,11 @@ import { CancelablePromise, makeCancelable, pick } from '@src/common/services/ut
 
 import { FormGroup } from '../../../../common/components/form/formGroup.component';
 import { numberOptions } from '../../../../common/components/form/numberOptions.component';
+import {
+    PageSettingsService,
+    PlayersSkillsFactory,
+    PlayersSkillsViewSettings,
+} from '../../services/playersSkills.factory';
 import { PlayersSkillsViewServiceSettings } from '../../services/playersSkillsViewServiceSettings';
 
 import { OnChangeRankingEvent, RankingOptions } from './rankingOptions.component';
@@ -65,27 +70,26 @@ export default class SkillsTableOptions extends React.Component<SkillsTableOptio
     private selectAgeOptions = numberOptions(SkillsTableOptions.selectAgePossibleNumbers);
 
     private readonly settingsRepository: SettingsRepository;
-    private saveFuturePredicationSettings$ = new Subject<Partial<SkillsTableOptionsState>>();
-    private saveFuturePredicationSettingsSubs?: Subscription;
-    private saveRankingSettings$ = new Subject<Partial<SkillsTableOptionsState>>();
-    private saveRankingSettingsSubs?: Subscription;
-    private checkBoxItems: CheckBoxItems;
 
-    private columnsConfig: CheckboxItem[] = [
-        { name: 'country', isChecked: true, label: 'Country' },
-        { name: 'wage', isChecked: true, label: 'Wage' },
-        { name: 'gs', isChecked: true, label: 'GS' },
-        { name: 'gsFutureMin', isChecked: true, label: 'GS future min' },
-        { name: 'gsFutureMax', isChecked: true, label: 'GS future max' },
-    ];
+    private readonly saveFuturePredicationSettings$ = new Subject<Partial<SkillsTableOptionsState>>();
+    private saveFuturePredicationSettingsSubs?: Subscription;
+    private readonly saveRankingSettings$ = new Subject<Partial<SkillsTableOptionsState>>();
+    private saveRankingSettingsSubs?: Subscription;
+
+    private pageSettingsService: PageSettingsService;
 
     private loadSettingsPromise?: CancelablePromise<PlayersSkillsViewServiceSettings>;
+
+    private checkBoxItems: CheckBoxItems;
 
     constructor(props: SkillsTableOptionsProps) {
         super(props);
 
         log.info('SkillsTableOptions.ctor +', props);
         this.settingsRepository = container.resolve(SettingsRepository);
+        const playersSkillsFactory = container.resolve(PlayersSkillsFactory);
+        this.pageSettingsService = playersSkillsFactory.getPlayersSettingsService();
+
         this.checkBoxItems = container.resolve(CheckBoxItems);
 
         this.state = {};
@@ -118,40 +122,44 @@ export default class SkillsTableOptions extends React.Component<SkillsTableOptio
 
     private async loadSettings() {
         this.loadSettingsPromise = makeCancelable(
-            this.settingsRepository.getMultipleSettings<PlayersSkillsViewServiceSettings>([
-                _rankingsSettingsKey,
-                _futurePredicationSettingsKey,
-                _transferListSettingsKey,
-            ]),
+            this.settingsRepository.getMultipleSettings<
+                PlayersSkillsViewServiceSettings & Record<string, BaseSettings>
+            >([_rankingsSettingsKey, _futurePredicationSettingsKey, this.pageSettingsService.key]),
         );
 
         this.loadSettingsPromise.promise
-            .then((settings) => {
-                let stateDelta: Partial<SkillsTableOptionsState> = {};
-
-                if (settings.futurePredicationSettings) {
-                    stateDelta = {
-                        ...stateDelta,
-                        ...pick(settings.futurePredicationSettings, ..._futurePredicationSettings),
-                    };
-                }
-                if (settings.rankingsSettings) {
-                    stateDelta.rankingsSettings = settings.rankingsSettings;
-                }
-                if (settings.transferListSettings) {
-                    const hiddenColumns = settings.transferListSettings.hiddenColumns;
-                    stateDelta.columnsVisibility = this.columnsConfig.map((cc) => ({
-                        ...cc,
-                        isChecked: !hiddenColumns.includes(cc.name),
-                    }));
-                }
-                this.setState({ ...stateDelta, isLoaded: true });
-            })
+            .then((settings) => this.setSettings(settings))
             .catch((reason) => {
                 if (!reason.isCanceled) {
-                    log.debug('skillsTableOptions.component', 'error', reason);
+                    log.warn('skillsTableOptions.component', 'error', reason);
                 }
             });
+    }
+
+    private setSettings(settings: PlayersSkillsViewServiceSettings): void {
+        let stateDelta: Partial<SkillsTableOptionsState> = {};
+
+        if (settings.futurePredicationSettings) {
+            stateDelta = {
+                ...stateDelta,
+                ...pick(settings.futurePredicationSettings, ..._futurePredicationSettings),
+            };
+        }
+        if (settings.rankingsSettings) {
+            stateDelta.rankingsSettings = settings.rankingsSettings;
+        }
+
+        const pageSettings = (settings as Record<string, BaseSettings>)[
+            this.pageSettingsService.key
+        ] as PlayersSkillsViewSettings;
+        if (pageSettings) {
+            const hiddenColumns = pageSettings.hiddenColumns;
+            stateDelta.columnsVisibility = this.pageSettingsService.columnsConfig.map((cc) => ({
+                ...cc,
+                isChecked: !hiddenColumns.includes(cc.name),
+            }));
+        }
+        this.setState({ ...stateDelta, isLoaded: true });
     }
 
     private async saveFuturePredicationSettings(state: SkillsTableOptionsState): Promise<void> {
@@ -170,7 +178,7 @@ export default class SkillsTableOptions extends React.Component<SkillsTableOptio
         if (!state.rankingsSettings) return;
 
         const hiddenColumns = state.columnsVisibility?.filter((col) => !col.isChecked).map((col) => col.name) || [];
-        await this.settingsRepository.save<TransferListSettings>(_transferListSettingsKey, {
+        await this.settingsRepository.save<TransferListSettings>(this.pageSettingsService.key, {
             hiddenColumns,
         });
     }

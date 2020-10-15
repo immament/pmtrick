@@ -4,7 +4,7 @@ import { singleton } from 'tsyringe';
 import { SkillsSummaryCombo } from '@src/common/model/player.model';
 import { PlayersSkillsTableService } from '@src/modules/playersSkills/services/playersSkillsTable.service';
 
-export const _transferListColumnsConfig: Record<string, number> = {
+const _columnsConfig: Record<string, number> = {
     country: 3,
     wage: 16,
     gs: 21,
@@ -14,7 +14,7 @@ export const _transferListColumnsConfig: Record<string, number> = {
 @singleton()
 export class TransferListSkillsTableService extends PlayersSkillsTableService {
     constructor() {
-        super(_transferListColumnsConfig);
+        super(_columnsConfig);
     }
 
     prepareTable(playersTable: HTMLTableElement): void {
