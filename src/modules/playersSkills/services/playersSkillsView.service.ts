@@ -18,7 +18,7 @@ import { PlayersSkillsFactory } from './playersSkills.factory';
 import { PlayersSkillsTableService } from './playersSkillsTable.service';
 import { PlayersSkillsViewServiceSettings } from './playersSkillsViewServiceSettings';
 import { PageSettingsService, PlayersSkillsViewSettings } from './playersSkillsViewSettings';
-import { ProcessPlayerService } from './ProcessPlayerService';
+import { ProcessPlayerService } from './processPlayer.service';
 
 export const _potentialConfig = getPotentialConfig();
 
@@ -59,7 +59,6 @@ export class PlayersSkillsViewService {
             await this.loadSettings();
         }
         await this.updatePlayers(this.playersTable);
-        await this.updateColumnsVisibility(this.playersTable);
     }
 
     private async updatePlayers(playersTable?: Table<PlayerWithSkillsSummaries>): Promise<void> {
@@ -77,6 +76,7 @@ export class PlayersSkillsViewService {
         for (const header of playersTable.headers) {
             header.applyHtmlCells(this.tableService.createHeaderCells());
         }
+        await this.updateColumnsVisibility(this.playersTable);
     }
 
     private async updateRanking(playersTable?: Table<PlayerWithSkillsSummaries>): Promise<void> {
