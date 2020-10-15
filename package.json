@@ -1,6 +1,6 @@
 {
     "name": "pmtrick-browser-extension",
-    "version": "0.0.2",
+    "version": "1.0.0",
     "description": "A Planetarium Manager online football manager Browser Extension",
     "main": "index.js",
     "scripts": {
@@ -93,5 +93,11 @@
         "reflect-metadata": "^0.1.13",
         "rxjs": "^6.6.3",
         "tsyringe": "^4.3.0"
+    },
+    "standard-version": {
+        "skip": {
+            "commit": true,
+            "tag": true
+        }
     }
 }
