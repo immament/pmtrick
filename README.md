@@ -4,6 +4,8 @@ PmTrick is browser extension for the [Planetarium Manager online football manage
 * [Firefox](https://j2team.dev/firefox-extension/pmtrick)
 * [Google Chrome](https://chrome.google.com/webstore/detail/pmtrick/fgiadpjpododkbbleachmabmcljgmdij)
 
+On adroid you can install [chrome extension](https://chrome.google.com/webstore/detail/pmtrick/fgiadpjpododkbbleachmabmcljgmdij) in [Kiwi browser](https://play.google.com/store/apps/details?id=com.kiwibrowser.browser)
+
 # Features
 
 ## Advanced tactics helper
