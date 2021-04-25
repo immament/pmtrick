@@ -1,6 +1,8 @@
 # PmTrick
 
-PmTrick is browser extension for the [Planetarium Manager online football manager game](https://www.pmanager.org), currently available for Firefox & Google Chrome.
+PmTrick is browser extension for the [Planetarium Manager online football manager game](https://www.pmanager.org), currently available for:
+* [Firefox](https://j2team.dev/firefox-extension/pmtrick)
+* [Google Chrome](https://chrome.google.com/webstore/detail/pmtrick/fgiadpjpododkbbleachmabmcljgmdij)
 
 # Features
 
