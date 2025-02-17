@@ -1,0 +1,1 @@
+PmTrick does not collect or store your personal data on our server. It only store user preferences in your browser locally.
